@@ -1,0 +1,139 @@
+@CHARSET "UTF-8";
+.text-header{
+
+	font-family: 'Audiowide', cursive;
+	font-size: 22px;
+	
+}
+ul>li>a{
+
+	font-color: black;
+}
+body{
+	background-image: url("../img/xdd.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#content-home{
+
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	text-align:center;
+	background-position: center center;
+	min-height: 1000px;
+	max-width: 1920px;
+}
+
+.bottom-right-description-image {
+    position: absolute;
+    color: white;
+    bottom: 38px;
+    right: 16px;
+    background-color: #428bca;
+    margin-right: 20px;
+    margin-top: 60px;
+}
+
+.bottom-left-description-image {
+    position: absolute;
+    color: white;
+    top: 8px;
+    left: 16px;
+    padding-left: 20px;
+}
+
+#content-about{
+
+	background-color: #F9F9F9;
+	min-height: 920px;
+}
+
+.section-contact{
+
+	font-family: 'Audiowide', cursive;
+	color: white;
+	background-color: #6666FF;
+	background-size: cover;
+	background-position: center;
+	height: 200px;
+	
+}
+
+#aboutUsContent_2{
+	display:none;
+}
+
+#aboutUsButton{
+	height: 180px; 
+	background-color: #6666FF;
+	padding-top: 50px;
+	border-radius: 10px;
+}
+
+#aboutUsButton:hover{
+	background-color: #b2b2ff;
+}
+
+#swimPriceSection{
+
+	background-image: url("../img/basen.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	text-align:center;
+	background-position: center center;
+	min-height: 600px;
+}
+
+#content-contact
+{
+	height: auto;
+	margin-top: 50px;
+	padding-top:20px;
+	text-align:center;
+	background-position: center center;
+	min-height: 700px;
+	width: 100%;
+}
+
+input.hidden {
+	position: absolute;
+	left: -9999px;
+}
+
+#profile-image1 {
+	cursor: pointer;
+
+	width: 100px;
+	height: 100px;
+	border:2px solid #6666FF;}
+.tital{ font-size:16px; font-weight:500;}
+.bot-border{ border-bottom:1px #f8f8f8 solid;  margin:5px 0  5px 0}
+
+.search {
+	 margin-top: -25%;
+ }
+.search .form-section{
+
+	border: 2px solid #428bca;
+	border-radius: 5px;
+	padding: 10px;
+}
+.serchtile{
+	color:#fff;
+}
+
+.resultBorder {
+	margin-top: -25%;
+}
+.resultBorder .form-section{
+
+	border: 2px solid #428bca;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+
