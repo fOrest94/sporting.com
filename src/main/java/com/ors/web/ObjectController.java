@@ -55,41 +55,27 @@ public class ObjectController {
 
         List<Object> objectList = objectService.findByPlace(searchObjectDTO.getObjectPlace());
 
-
         List<Reservation> reservationList = new ArrayList<>();
         for (Object object: objectList) {
-            reservationList.add(reservationService.findByObjectId(object.getId()));
+            Reservation temp = reservationService.findByObjectId(object.getId());
+            if( temp != null)
+            reservationList.add(temp);
         }
 
         int startTime = Integer.valueOf(searchObjectDTO.getStartTime().replace(":", ""));
         int endTime = Integer.valueOf(searchObjectDTO.getEndTime().replace(":",""));
-
         List<Object> objectListApprepiate = new ArrayList<>();
 
         for (Reservation reservation: reservationList) {
-
             int tempStart = Integer.valueOf(reservation.getHourOfReservation().replace(":", ""));
             int tempEnd = Integer.valueOf(reservation.getHourOfEndReservation().replace(":",""));
             if(endTime <= tempStart)
                 objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
             else if (startTime >= tempEnd)
                 objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
+
         }
-
-
-        //if(searchObjectDTO.getStartTime())
-        //System.out.println(searchObjectDTO.toString());
-        //SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-        //System.out.println(format.format(searchObjectDTO.getDate()));
-
-       /* List<Reservation> reservationList = reservationService.findByProperTime(searchObjectDTO.getDate(), searchObjectDTO.getStartTime(), searchObjectDTO.getEndTime());
-        List<Object> objectList = new ArrayList<>();
-
-        for (Reservation reservation: reservationList) {
-            objectList.add(objectService.findById(reservation.getObjectId()));
-        }*/
-
-
+        
         model.addAttribute("objectList", objectListApprepiate);
         return "objectList";
     }
