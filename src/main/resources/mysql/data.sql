@@ -32,22 +32,22 @@ INSERT INTO `obiekt`(`nazwa`,`ulica`, `miasto`, `opis` ,`ocena`,`ocena_ilosc`, `
 VALUES ('Mala sala gimnastyczna','Rejtana 23, Stare Miasto','Kraków', 'Sala gimnastyczna wymiarach 18m x 40m. W środku znajdują się dwa kosze do koszykówki, osprzęt do rozlożenia siatki do siatkówki oraz 8 stolów do tenisa stolowego ','3.4' ,2, 'resources/img/2.jpg',0);
 
 INSERT INTO `obiekt`(`nazwa`,`ulica`, `miasto`, `opis` ,`ocena`,`ocena_ilosc`, `zdjecie`, zatwierdzony)
-VALUES ('Hala tenisowa','Rejtana 23, Stare Miasto', 'Jasło', 'Hala tenisowa o wymiarach 25m x 50m, podzielony na 10 torow o szerokości 2,5m.','4.2' ,2, 'resources/img/3.jpg',0);
+VALUES ('Hala tenisowa','Rejtana 23, Stare Miasto', 'Jasło', 'Hala tenisowa o wymiarach 25m x 50m, podzielony na 10 torow o szerokości 2,5m.','5' ,1, 'resources/img/3.jpg',0);
 
 INSERT INTO `obiekt`(`nazwa`,`ulica`, `miasto`, `opis` ,`ocena`,`ocena_ilosc`, `zdjecie`, zatwierdzony)
-VALUES ('Hala sztuk walki','Rejtana 23, Stare Miasto','Kraków', 'Hala sztuk walki o wymiarach 25m x 50m, tylko dla największych koksów któzy chcą się bić jak pudzianowski ... czyli słąbo.','4.3' ,2, 'resources/img/4.jpg',0);
+VALUES ('Hala sztuk walki','Rejtana 23, Stare Miasto','Kraków', 'Hala sztuk walki o wymiarach 25m x 50m, tylko dla największych koksów któzy chcą się bić jak pudzianowski ... czyli słąbo.','4' ,2, 'resources/img/4.jpg',0);
 
 INSERT INTO `obiekt`(`nazwa`,`ulica`, `miasto`, `opis` ,`ocena`,`ocena_ilosc`, `zdjecie`, zatwierdzony)
 VALUES ('Sala BJJ','Rejtana 23, Stare Miasto','Kraków', 'Sala do brazylijskiego jujitsu. Polecamy wszystkim którzy są gibcy jak koty a są jak sieroty, aby skorzystali z tej ultranowoczesnej salki. Są super prysznice z bateriami nierdzewnymi i masażami pośladkowymi.','4.5' ,2, 'resources/img/5.jpg',0);
 
 INSERT INTO `obiekt`(`nazwa`,`ulica`, `miasto`, `opis` ,`ocena`,`ocena_ilosc`, `zdjecie`, zatwierdzony)
-VALUES ('Sauna','Rejtana 23, Stare Miasto', 'Jasło', 'Jeżeli chcesz sięwypocić jak dekarz albo rolnik w polu to zapraszamy do skorzystania z naszej ultranowoczesnej sauny... dla każdego nowego klienta lody Koral gratis.','3.9' ,2, 'resources/img/6.jpg',0);
+VALUES ('Sauna','Rejtana 23, Stare Miasto', 'Jasło', 'Jeżeli chcesz sięwypocić jak dekarz albo rolnik w polu to zapraszamy do skorzystania z naszej ultranowoczesnej sauny... dla każdego nowego klienta lody Koral gratis.','3' ,3, 'resources/img/6.jpg',0);
 
 INSERT INTO `obiekt`(`nazwa`,`ulica`, `miasto`, `opis` ,`ocena`,`ocena_ilosc`, `zdjecie`, zatwierdzony)
 VALUES ('Silownia','Rejtana 23, Stare Miasto','Kraków', 'Tak tak to własnie my tu mamy te ciężary, także nie zwlekaj namów kolege do wspólnego wysiłku i wbijaj.' ,'2.4',2, 'resources/img/7.jpg',0);
 
 INSERT INTO `obiekt`(`nazwa`,`ulica`, `miasto`, `opis` ,`ocena`,`ocena_ilosc`, `zdjecie`, zatwierdzony)
-VALUES ('Boisko siatkarskie','Rejtana 23, Stare Miasto', 'Jasło', 'SAala do siatkówki pełnowymiarowa. Na miejscu jest możliwość wyporzyczenia piłęk i sprzętu sędziowskiego.' ,'7.6',2, 'resources/img/8.jpg',0);
+VALUES ('Boisko siatkarskie','Rejtana 23, Stare Miasto', 'Jasło', 'SAala do siatkówki pełnowymiarowa. Na miejscu jest możliwość wyporzyczenia piłęk i sprzętu sędziowskiego.' ,'3.8',7, 'resources/img/8.jpg',0);
 
 INSERT INTO `cennik`(`id_obiektu`, `wynajecie_robocze_taryfa_pierwsza`, `wynajecie_robocze_taryfa_druga`, `wynajecie_weekend_taryfa_pierwsza`,
 `wynajecie_weekend_taryfa_druga`, `karnet_taryfa_pierwsza`, `karnet_taryfa_druga`, `jednorazowe_wejscie`, `godzina_zmiany_taryfy`)

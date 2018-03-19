@@ -75,8 +75,9 @@ public class ObjectController {
                 objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
 
         }
-        
+
         model.addAttribute("objectList", objectListApprepiate);
+        model.addAttribute("objectPlace", searchObjectDTO.getObjectPlace());
         return "objectList";
     }
 

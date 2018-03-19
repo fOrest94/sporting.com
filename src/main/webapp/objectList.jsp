@@ -81,7 +81,6 @@
     </div>
 
 
-<c:if test="${not empty objectList}">
     <div class="container" style="background-color: white">
         <div class="col-lg-3" style="min-height: 370px;">
             <div class="search" style="padding-top: 80px;">
@@ -160,7 +159,8 @@
             </div>
         </div>
         <div class="col-lg-9" style="min-height: 370px; padding-top: 10px; padding-bottom: 15px; margin-top: 10px;">
-            <p style="font-size: 150%; font-family: 'Audiowide', cursive;">Znaleziono ${objectList.size()} wyników dla: ${objectList.get(0).place}</p>
+            <p style="font-size: 150%; font-family: 'Audiowide', cursive;">Znaleziono ${objectList.size()} wyników dla: ${objectPlace}</p>
+            <c:if test="${not empty objectList}">
             <c:forEach var="listView" items="${objectList}">
                 <div class="col-lg-12" style="margin-bottom: 12px; padding: 15px 10px 0px 0px;border-radius: 10px; border: 1px solid #9d9d9d; min-height: 300px">
                     <div class="col-lg-6" style="padding-top: 15px;">
@@ -188,9 +188,9 @@
                     </div>
                 </div>
             </c:forEach>
+            </c:if>
         </div>
     </div>
-</c:if>
 
 <div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
