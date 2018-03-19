@@ -14,4 +14,5 @@ public interface ReservationService {
     List<Reservation> findByUserId(Long userId);
     List<Reservation> findAll();
     List<Reservation> findByProperTime(String date, String startTime, String endTime);
+    Reservation findByObjectId(Long aLong);
 }

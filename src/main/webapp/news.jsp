@@ -81,54 +81,38 @@
     </div>
 </div>
 
-<div class="container" style="min-height: 800px; background-color: white; padding-top: 30px;">
+<div class="container" style="min-height: 840px; background-color: white; padding-top: 30px;">
     <div class="row">
         <div class="col-lg-8">
-            <c:if test="${not empty newsList}">
-                <h1 style="text-align: left">${newsList[0].title}</h1>
+            <c:if test="${not empty newsList && newsById == null}">
+                <c:forEach var="listView" items="${newsList}">
+                <h1 style="text-align: left">${listView.title}</h1>
                 <hr>
                 <p style="text-align: left"><span class="glyphicon glyphicon-time"></span>
-                    Opublikowany: ${newsList[0].data}
+                    Opublikowany: ${listView.data}
                 </p>
                 <hr>
-                <img class="img-responsive" src="${objectList[0].picture}" width="900" height="300">
+                <img class="img-responsive" src="../resources/img/${listView.objectId}.jpg" width="900" height="300">
                 <hr>
 
-                <p>${mainNews.description}</p>
+                <p>${listView.description}</p>
                 <hr>
-                <%--<div class="well">--%>
-                    <%--<h4>Dodaj komentarz:</h4>--%>
-                    <%--<form:form method="post" modelAttribute="commentForm">--%>
-                        <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-                        <%--<form:input type="hidden" path="userId" value="${user.id}"/>--%>
-                        <%--<form:input type="hidden" path="newsId" value="${mainNews.id}"/>--%>
-                        <%--<form:input type="hidden" path="firstName" value="${user.firstName}"/>--%>
-                        <%--<form:input type="hidden" path="lastName" value="${user.lastName}"/>--%>
-                        <%--<div class="form-group">--%>
-                            <%--<form:textarea path="comment_description" class="form-control" rows="3"></form:textarea>--%>
-                        <%--</div>--%>
-                        <%--<button type="submit" class="btn btn-danger">Potwierdź</button>--%>
-                    <%--</form:form>--%>
-                <%--</div>--%>
+                </c:forEach>
+            </c:if>
+            <c:if test="${not empty newsList && newsById != null}">
+                <h1 style="text-align: left">${newsById.title}</h1>
+                <hr>
+                <p style="text-align: left"><span class="glyphicon glyphicon-time"></span>
+                    Opublikowany: ${newsById.data}
+                </p>
+                <hr>
+                <img class="img-responsive" src="../resources/img/${newsById.objectId}.jpg" width="900" height="300">
+                <hr>
+
+                <p>${newsById.description}</p>
+                <hr>
             </c:if>
             <hr>
-            <%--<c:if test="${not empty commentList}">--%>
-                <%--<c:forEach var="commentView" items="${commentList}">--%>
-                    <%--<div class="media">--%>
-                        <%--<a class="pull-left" href="#">--%>
-                            <%--<img class="media-object" src="/resources/pictures/profileImages/${commentView.userId}.jpg"--%>
-                                 <%--height="64"--%>
-                                 <%--width="64">--%>
-                        <%--</a>--%>
-                        <%--<div class="media-body">--%>
-                            <%--<h4 class="media-heading">${commentView.firstName} ${commentView.lastName}--%>
-                                <%--<small>${commentView.data}</small>--%>
-                            <%--</h4>--%>
-                                <%--${commentView.comment_description}--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</c:forEach>--%>
-            <%--</c:if>--%>
         </div>
         <div class="col-md-4">
             <div class="well">
@@ -220,7 +204,7 @@
 </div>
 --%>
 
-<div class="footer">
+<div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

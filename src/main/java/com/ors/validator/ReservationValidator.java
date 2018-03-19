@@ -1,6 +1,8 @@
 package com.ors.validator;
 
 import com.ors.model.Reservation;
+import com.ors.service.ReservationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -13,6 +15,9 @@ import java.util.Date;
 
 @Component
 public class ReservationValidator implements Validator {
+
+    @Autowired
+    private ReservationService reservationService;
 
     private boolean isEndOfReservationLaterThanStartOfReserv(String startOfReservation, String endOfReservation) {
         Integer hourStartReservation = Integer.valueOf(startOfReservation.substring(0, startOfReservation.indexOf(":")));
@@ -57,6 +62,18 @@ public class ReservationValidator implements Validator {
 
         if (!gotDateIsNotBeforeThanToday(reservation.getDayOfReservation())) {
             errors.rejectValue("dayOfReservation", "Reservation.invalidDateOfReservation");
+        }
+
+        if (!gotDateIsNotBeforeThanToday(reservation.getDayOfReservation())) {
+            errors.rejectValue("dayOfReservation", "Reservation.invalidDateOfReservation");
+        }
+
+        if(reservationService.findByProperTime(reservation.getDayOfReservation(),reservation.getHourOfReservation(),reservation.getHourOfEndReservation()).size() > 0){
+            errors.rejectValue("dayOfReservation", "Reservation.existInDatabase");
+        }
+
+        if(reservationService.findByProperTime(reservation.getDayOfReservation(),reservation.getHourOfReservation(),reservation.getHourOfEndReservation()).size() > 0){
+            errors.rejectValue("dayOfReservation", "Reservation.existInDatabase");
         }
     }
 }

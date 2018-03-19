@@ -200,7 +200,7 @@
 </div>
 </div>
 
-<div class="footer navbar-fixed-bottom" style="background-color: whitesmoke">
+<div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

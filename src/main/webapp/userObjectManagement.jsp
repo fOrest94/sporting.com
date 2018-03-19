@@ -93,9 +93,11 @@
                             <h3 class="panel-title"><a href="/userObject/${user.objectId}">Obiekt</a></h3>
                         </div>
                     </c:if>
-                    <div class="panel-body">
-                        <h3 class="panel-title"><a href="/userProfileReservation">Rezerwacje</a></h3>
-                    </div>
+                    <c:if test="${user.role != 'ADMINISTRATOR'}">
+                        <div class="panel-body">
+                            <h3 class="panel-title"><a href="/userProfileReservation">Rezerwacje</a></h3>
+                        </div>
+                    </c:if>
                     <div class="panel-body">
                         <h3 class="panel-title"><a href=" /userProfileEdit">Ustawienia</a></h3>
                     </div>
@@ -193,7 +195,7 @@
             </div>
         </div>
     </div>
-<div class="footer navbar-fixed-bottom" style="background-color: whitesmoke">
+<div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

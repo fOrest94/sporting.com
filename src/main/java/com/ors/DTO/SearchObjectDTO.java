@@ -38,4 +38,14 @@ public class SearchObjectDTO {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public String toString() {
+        return "SearchObjectDTO{" +
+                "objectPlace='" + objectPlace + '\'' +
+                ", date='" + date + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                '}';
+    }
 }

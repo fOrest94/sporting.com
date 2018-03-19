@@ -5,6 +5,7 @@ import com.ors.model.Object;
 import com.ors.model.Reservation;
 import com.ors.model.User;
 import com.ors.service.*;
+import com.ors.validator.ReservationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +39,9 @@ public class ObjectController {
     @Autowired
     private PriceListService priceListService;
 
+    @Autowired
+    private ReservationValidator validator;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String welcome(Model model) {
 
@@ -46,14 +52,45 @@ public class ObjectController {
 
     @RequestMapping(value = {"/","/index"}, method = RequestMethod.POST)
     public String showListOfObject(@ModelAttribute("showListOfObjectForm") SearchObjectDTO searchObjectDTO, BindingResult bindingResult, Model model) {
-        List<Reservation> reservationList = reservationService.findByProperTime(searchObjectDTO.getDate(), searchObjectDTO.getStartTime(), searchObjectDTO.getEndTime());
+
+        List<Object> objectList = objectService.findByPlace(searchObjectDTO.getObjectPlace());
+
+
+        List<Reservation> reservationList = new ArrayList<>();
+        for (Object object: objectList) {
+            reservationList.add(reservationService.findByObjectId(object.getId()));
+        }
+
+        int startTime = Integer.valueOf(searchObjectDTO.getStartTime().replace(":", ""));
+        int endTime = Integer.valueOf(searchObjectDTO.getEndTime().replace(":",""));
+
+        List<Object> objectListApprepiate = new ArrayList<>();
+
+        for (Reservation reservation: reservationList) {
+
+            int tempStart = Integer.valueOf(reservation.getHourOfReservation().replace(":", ""));
+            int tempEnd = Integer.valueOf(reservation.getHourOfEndReservation().replace(":",""));
+            if(endTime <= tempStart)
+                objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
+            else if (startTime >= tempEnd)
+                objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
+        }
+
+
+        //if(searchObjectDTO.getStartTime())
+        //System.out.println(searchObjectDTO.toString());
+        //SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        //System.out.println(format.format(searchObjectDTO.getDate()));
+
+       /* List<Reservation> reservationList = reservationService.findByProperTime(searchObjectDTO.getDate(), searchObjectDTO.getStartTime(), searchObjectDTO.getEndTime());
         List<Object> objectList = new ArrayList<>();
 
         for (Reservation reservation: reservationList) {
             objectList.add(objectService.findById(reservation.getObjectId()));
-        }
+        }*/
 
-        model.addAttribute("objectList", objectList);
+
+        model.addAttribute("objectList", objectListApprepiate);
         return "objectList";
     }
 
@@ -87,5 +124,26 @@ public class ObjectController {
         model.addAttribute("user",user);
         model.addAttribute("objectList", objectService.findAll());
         return "userObjectManagement";
+    }
+
+    @RequestMapping(value = "/rateObject/{id}", method = RequestMethod.POST)
+    public String rateObject(@PathVariable("id") Long id, @RequestParam("stars") String stars ,Model model, HttpServletRequest request) {
+
+        Object object = objectService.findById(id);
+        int marksCount = Integer.valueOf(object.getMarkCount());
+
+        if(marksCount == 0){
+            objectService.updateMark(stars, String.valueOf(marksCount+1), id);
+        }
+        else {
+            Double tempMark = Double.valueOf(object.getMark());
+            String newMark = String.valueOf((Integer.valueOf(stars) + tempMark*marksCount)/(marksCount+1)).substring(0,3);
+            objectService.updateMark(newMark, String.valueOf(marksCount+1), id);
+        }
+        System.out.println("sssssssssssssssssssssssssssssss");
+        model.addAttribute("objectForm", objectService.findById(id));
+        model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
+        model.addAttribute("objectDutyHours", priceListService.findByObjectId(id));
+        return "object";
     }
 }

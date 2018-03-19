@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by cos on 15.12.2016.
@@ -39,6 +41,16 @@ public class NewsController {
         model.addAttribute("newsForm", new News());
         model.addAttribute("objectList", objectService.findAll());
         model.addAttribute("newsList", newsService.findAll());
+        return "news";
+    }
+
+    @RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
+    public String newsBookmarkOne(@PathVariable("id") Long id, Model model) {
+
+        model.addAttribute("newsForm", new News());
+        model.addAttribute("objectList", objectService.findAll());
+        model.addAttribute("newsList", newsService.findAll());
+        model.addAttribute("newsById", newsService.findById(id));
         return "news";
     }
 

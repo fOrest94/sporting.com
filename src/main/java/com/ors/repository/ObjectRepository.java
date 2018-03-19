@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by cos on 07.12.2016.
@@ -23,6 +24,12 @@ public interface ObjectRepository extends JpaRepository<Object, Long> {
     @Query("UPDATE Object o SET o.objectAccept = 1 WHERE o.id = ?1")
     int acceptObject(long id);
 
+    @Transactional
+    @Modifying()
+    @Query("UPDATE Object o SET o.mark = ?1, o.markCount = ?2 WHERE o.id = ?3")
+    int updateMark(String mark, String marksCount, Long id);
+
     Object findById(Long id);
     Object findByName(String name);
+    List<Object> findObjectsByPlace(String place);
 }

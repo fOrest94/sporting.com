@@ -17,15 +17,14 @@ public class User {
     @Column(name = "nazwa_uzytkownika")
     private String username;
 
-    @NotNull
+
     @Column(name = "imie")
     private String firstName;
 
-    @NotNull
+
     @Column(name = "nazwisko")
     private String lastName;
 
-    @NotNull
     @Column(name = "obiekt_id")
     private Long objectId;
 
@@ -158,5 +157,24 @@ public class User {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", objectId=" + objectId +
+                ", password='" + password + '\'' +
+                ", passwordConfirm='" + passwordConfirm + '\'' +
+                ", role='" + role + '\'' +
+                ", email='" + email + '\'' +
+                ", numberOfPhone='" + numberOfPhone + '\'' +
+                ", createdDate=" + createdDate +
+                ", objectName='" + objectName + '\'' +
+                ", object=" + object +
+                '}';
     }
 }

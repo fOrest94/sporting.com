@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 public class ObjectServiceImpl implements ObjectService{
 
-
     @Autowired
     private ObjectRepository objectRepository;
 
@@ -28,6 +27,10 @@ public class ObjectServiceImpl implements ObjectService{
         return objectRepository.findByName(name);
     }
 
+    @Override
+    public List<Object> findByPlace(String place) {
+        return objectRepository.findObjectsByPlace(place);
+    }
 
     @Override
     public void save(Object object) {
@@ -60,6 +63,11 @@ public class ObjectServiceImpl implements ObjectService{
     @Override
     public List<Object> findAll() {
         return objectRepository.findAll();
+    }
+
+    @Override
+    public int updateMark(String mark, String marksCount, long id) {
+        return objectRepository.updateMark(mark, marksCount, id);
     }
 
 

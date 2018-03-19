@@ -59,7 +59,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
+        System.out.println(userForm.toString());
         userService.save(userForm);
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 

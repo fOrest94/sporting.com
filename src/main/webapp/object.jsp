@@ -44,7 +44,7 @@
                     <c:url value="/logout" var="logoutUrl" />
                     <form action="${logoutUrl}" method="post" id="logoutForm">
                         <input type="hidden" name="${_csrf.parameterName}"
-                               value="${_csrf.token}" />
+                               value="${_csrf.token}"/>
                     </form>
                     <script>
                         function formSubmit() {
@@ -76,7 +76,7 @@
         <ul class="nav navbar-nav" >
             <li><a style="color:#428bca;" href="/">Wyszukaj ośrodek</a></li>
             <li><a style="color:#428bca;" href="/news">Aktualności</a></li>
-            <li><a style="color:#428bca;" href="/offer">Kontakt</a></li>
+            <li><a style="color:#428bca;" href="/contact">Kontakt</a></li>
         </ul>
     </div>
 </div>
@@ -194,6 +194,11 @@
                 <img class="img-responsive" src="../resources/img/3.jpg" alt="Short alt text"/>
             </a>
         </div>
+<script>
+    $(':radio').change(function() {
+        console.log('New star rating: ' + this.value);
+    });
+</script>
         <div class="col-lg-12">
             <div class="col-lg-7" style="padding: 15px 0px 0px 0px; margin: 0px 0px 0px 0px;">
                 <p style="width: 450px; white-space: wrap; overflow: hidden; text-overflow: ellipsis; ">${objectForm.description}</p>
@@ -202,6 +207,47 @@
                 <div class="col-lg-12">
                     <p align="right" style="font-size: 200%; padding: 0%; margin: 0%; color: #d43f3a">Ocena: ${objectForm.mark}</p>
                     <p align="right" style="font-size: 90%; padding: 0%; margin: 0%;">Ilość ocen: ${objectForm.markCount}</p>
+                    <div class="col-lg-12" style="padding-top: 20px">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-11">
+                            <form  class="rating" method="POST" action="/rateObject/${objectForm.id}">
+                                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                            <label>
+                                <input type="radio" name="stars" value="1" />
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                        </div>
+                             <button name="id" value="${objectForm.id}" class="btn btn-primary" style="margin-left: 90px">Oceń</button>
+                        </form>
+                    </div>
+
                 </div>
                 <div class="col-lg-12" style=" padding-top: 40px;">
                     <p align="left" style="margin-left: 40px; font-size: 100%; "><strong>Cena za godzine: ${objectForm.price}</strong></p>
@@ -216,15 +262,13 @@
         </div>
         <div class="col-lg-8">
         </div>
-        <div class="col-lg-4" style="margin-top: 60px;">
-            <button type="submit" style="font-size: 20px;" class="btn btn-default btn-primary">Rezerwuj</button>
+        <div class="col-lg-4" style="margin-top: 60px; margin-bottom: 60px">
+            <a href="/reservation/${objectForm.id}" class="btn btn-primary" style="font-size: 20px;">Rezerwuj</a>
         </div>
-
-
     </div>
 </div>
 
-<div class="footer navbar-fixed-bottom" style="background-color: whitesmoke">
+<div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

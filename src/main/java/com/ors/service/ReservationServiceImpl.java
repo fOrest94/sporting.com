@@ -36,4 +36,9 @@ public class ReservationServiceImpl implements ReservationService{
         System.out.println("sdsd "+date+" "+startTime+" "+endTime);
         return reservationRepository.findByProperTime(date,startTime,endTime);
     }
+
+    @Override
+    public Reservation findByObjectId(Long aLong) {
+        return reservationRepository.findByObjectId(aLong);
+    }
 }

@@ -85,8 +85,8 @@
     <div class="container">
         <div id="signupbox" class="col-md-10 col-md-offset-1"
              data-scrollreveal="enter left and move 300px over 1.33s">
-            <div class="panel" style="border-color: #5151cc;">
-                <div class="panel-heading" style="background-color: #a3a3ff;">
+            <div class="panel" style="border-color: #428bca;">
+                <div class="panel-heading" style="background-color: #428bca;">
                     <div class="panel-title">Rezerwacja</div>
 
                 </div>
@@ -177,12 +177,12 @@
 
                     <div class="form-group">
                         <div class="col-lg-2">
-                            <a href="/priceList"><img src="resources/img/left-arrow.png"></a>
+                            <a href="/priceList"><img src="../resources/img/left-arrow.png"></a>
                         </div>
                         <div class="col-lg-offset-7 col-lg-2">
                             <div style="margin-top: 5px" class="form-group">
                                 <input type="submit" value="Zarezerwuj" class="btn btn-primary"
-                                       style="background-color: #6666FF; width: 150px;">
+                                       style="width: 150px;">
                             </div>
                         </div>
                     </div>

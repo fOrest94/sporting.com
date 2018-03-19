@@ -11,14 +11,14 @@
     <title>kennyS - centrum sportowe</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="resources/css/style.css"/>
-    <script src="resources/js/jquery.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/script.js"></script>
-    <script src="resources/js/scrollReveal.js"></script>
-    <script src="resources/js/custom.js"></script>
+    <link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../resources/css/style.css"/>
+    <script src="../resources/js/jquery.js"></script>
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <script src="../resources/js/script.js"></script>
+    <script src="../resources/js/scrollReveal.js"></script>
+    <script src="../resources/js/custom.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -76,10 +76,10 @@
         <ul class="nav navbar-nav" >
             <li><a style="color:#428bca;" href="/">Wyszukaj ośrodek</a></li>
             <li><a style="color:#428bca;" href="/news">Aktualności</a></li>
-            <li><a style="color:#428bca;" href="/offer">Kontakt</a></li>
+            <li><a style="color:#428bca;" href="/contact">Kontakt</a></li>
         </ul>
     </div>
-</div>
+
 
 <c:if test="${not empty objectList}">
     <div class="container" style="background-color: white">
@@ -192,7 +192,7 @@
     </div>
 </c:if>
 
-<div class="footer navbar-fixed-bottom" style="background-color: whitesmoke">
+<div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

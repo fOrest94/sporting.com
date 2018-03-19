@@ -2,6 +2,7 @@ package com.ors.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.DecimalFormat;
 
 /**
  * Created by cos on 07.12.2016.

@@ -11,14 +11,14 @@
     <title>kennyS - centrum sportowe</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="resources/css/style.css"/>
-    <script src="resources/js/jquery.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/script.js"></script>
-    <script src="resources/js/scrollReveal.js"></script>
-    <script src="resources/js/custom.js"></script>
+    <link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../resources/css/style.css"/>
+    <script src="../resources/js/jquery.js"></script>
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <script src="../resources/js/script.js"></script>
+    <script src="../resources/js/scrollReveal.js"></script>
+    <script src="../resources/js/custom.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -80,67 +80,36 @@
         </ul>
     </div>
 </div>
-
-<div id="content-home">
-    <div class="search" style="padding-top: 180px;">
-        <div class="container" style="background-color: white; padding-top: 330px;">
-            <div class="form-section">
-                <div class="row">
-                        <form:form method="POST" name="showListOfObjectForm" modelAttribute="showListOfObjectForm" class="form-signin">
-                        <div class="col-md-2" style="padding-top: 5px;">
-                                <%--<label for="miasto">Miejscowość</label>--%>
-                            Lokalizacja ośrodka:
+<div   class="container" style="background-color: white; height: 840px">
+    <div class="search" style="padding-top: 320px; ">
+        <div class="form-section">
+            <div class="row">
+                    <form:form method="POST" name="showListOfObjectForm" modelAttribute="showListOfObjectForm" class="form-signin">
+                    <div class="col-md-2" style="padding-top: 5px;">
+                        Lokalizacja ośrodka:
+                    </div>
+                    <div class="col-md-10">
+                        <form:input type="text" path="objectPlace" class="form-control" id="miasto"  placeholder="Wpisz miejscowość"/>
+                    </div>
+                    <div class="col-md-12" style="padding-top: 20px;">
+                        <div class="col-md-1" style="padding-top: 5px;">
+                           Termin:
                         </div>
-                        <div class="col-md-10">
-                            <%--<label for="miasto">Miejscowość</label>--%>
-                            <form:input type="text" path="objectPlace" class="form-control" id="miasto"  placeholder="Wpisz miejscowość"/>
+                        <div class="col-md-2">
+                            <form:input type="text" path="date" id="datetimepicker"
+                                        onchange="evaluatePrice()" placeholder="Wybierz date"/>
+                            </br>
+                            <form:errors path="date"/>
                         </div>
-                        <div class="col-md-12" style="padding-top: 20px;">
-                            <div class="col-md-1" style="padding-top: 5px;">
-                               Termin:
-                            </div>
-                            <div class="col-md-2">
-                                <form:input type="text" path="date" class="form-control" id="data" placeholder="Wybierz date"/>
-                            </div>
-    <%--                        <div class="col-md-12" style="margin-top: 30px; padding: 0px;">--%>
-                            <div class="col-md-2"  style="padding-top: 5px;">
-                                Od godziny:
-                            </div>
-                            <div class="col-md-1"  style="padding-top: 5px;">
-                               <%-- <label for="godzina">Godzina</label>
-                                <form:input type="text" path="startHourReservation" class="form-control" id="godzina" placeholder="Wybierz godzine"/>--%>
-                                   <spring:bind path="startTime">
-                                       <form:select path="startTime" id="hourOfReservation"
-                                                    onchange="evaluatePrice()"
-                                                    style="border-radius: 3px; border-width: 1px; font-size: 16px;">
-                                           <option value="08:00">7:00</option>
-                                           <option value="08:00">8:00</option>
-                                           <option value="09:00">9:00</option>
-                                           <option value="10:00">10:00</option>
-                                           <option value="11:00">11:00</option>
-                                           <option value="12:00">12:00</option>
-                                           <option value="13:00">13:00</option>
-                                           <option value="14:00">14:00</option>
-                                           <option value="15:00">15:00</option>
-                                           <option value="16:00">16:00</option>
-                                           <option value="17:00">17:00</option>
-                                           <option value="18:00">18:00</option>
-                                           <option value="19:00">19:00</option>
-                                           <option value="20:00">20:00</option>
-                                           <option value="21:00">21:00</option>
-                                       </form:select>
-                                   </spring:bind>
-                            </div>
-                            <div class="col-md-2"  style="padding-top: 5px;">
-                                Do godziny:
-                            </div>
-                            <div class="col-md-1"  style="padding-top: 5px;">
-                               <%-- <label for="godzina">Godzina</label>
-                                <form:input type="text" path="endHourReservation" class="form-control" id="godzina" placeholder="Wybierz godzine"/>--%>
-                                   <spring:bind path="endTime">
-                                   <form:select path="endTime" id="hourOfEndReservation"
+                        <div class="col-md-2"  style="padding-top: 5px;">
+                            Od godziny:
+                        </div>
+                        <div class="col-md-1"  style="padding-top: 5px;">
+                               <spring:bind path="startTime">
+                                   <form:select path="startTime" id="hourOfReservation"
                                                 onchange="evaluatePrice()"
                                                 style="border-radius: 3px; border-width: 1px; font-size: 16px;">
+                                       <option value="08:00">7:00</option>
                                        <option value="08:00">8:00</option>
                                        <option value="09:00">9:00</option>
                                        <option value="10:00">10:00</option>
@@ -155,54 +124,65 @@
                                        <option value="19:00">19:00</option>
                                        <option value="20:00">20:00</option>
                                        <option value="21:00">21:00</option>
-                                       <option value="22:00">22:00</option>
-                                       ";
                                    </form:select>
-                                   </spring:bind>
-                            </div>
-                                  <div class="col-md-offset-1 col-md-1" style="padding-bottom: 20px;">
-                                <button type="submit" style="font-size: 20px;" class="btn btn-default btn-primary">Wyszukaj</button>
-                            </div>
+                               </spring:bind>
                         </div>
-                        </form:form>
-                </div>
+                        <div class="col-md-2"  style="padding-top: 5px;">
+                            Do godziny:
+                        </div>
+                        <div class="col-md-1"  style="padding-top: 5px;">
+                               <spring:bind path="endTime">
+                               <form:select path="endTime" id="hourOfEndReservation"
+                                            onchange="evaluatePrice()"
+                                            style="border-radius: 3px; border-width: 1px; font-size: 16px;">
+                                   <option value="08:00">8:00</option>
+                                   <option value="09:00">9:00</option>
+                                   <option value="10:00">10:00</option>
+                                   <option value="11:00">11:00</option>
+                                   <option value="12:00">12:00</option>
+                                   <option value="13:00">13:00</option>
+                                   <option value="14:00">14:00</option>
+                                   <option value="15:00">15:00</option>
+                                   <option value="16:00">16:00</option>
+                                   <option value="17:00">17:00</option>
+                                   <option value="18:00">18:00</option>
+                                   <option value="19:00">19:00</option>
+                                   <option value="20:00">20:00</option>
+                                   <option value="21:00">21:00</option>
+                                   <option value="22:00">22:00</option>
+                                   ";
+                               </form:select>
+                               </spring:bind>
+                        </div>
+                              <div class="col-md-offset-1 col-md-1" style="padding-bottom: 20px;">
+                            <button type="submit" style="font-size: 20px;" class="btn btn-default btn-primary">Wyszukaj</button>
+                        </div>
+                    </div>
+                    </form:form>
             </div>
         </div>
-    </div>
-    <div class="container" style="padding-top: 50px; background-color: white;">
-        <div class="form-section">
-          <%--  <a class="btn btn-primary" href="/object/${listView.id}">Sprawdź</a>--%>
-        <c:if test="${not empty topObjects}">
-            <c:forEach var="listView" items="${topObjects}">
 
-               <a class="col-md-4" style="padding-bottom: 20px; padding-left: 0px; padding-right: 0px;" href="/object/${listView.id}">
-                   <img class="col-md-12"  src="../resources/img/${listView.id}.jpg">
-                   <div class="bottom-left-description-image">
-                       <p style="text-align: left; font-size: 180%; padding: 0%">${listView.name}</p>
-                       <p style="text-align: left; font-size: 130%; padding: 0%">${listView.place}</p>
-                   </div>
-                   <div class="bottom-right-description-image">
-                       Ocena: ${listView.mark}
-                   </div>
-                </a>
-               <%-- <div class="col-md-4" style="padding-bottom: 20px; padding-left: 0px; padding-right: 0px;" href="/object/${listView.id}">
-                    <img class="col-md-12"  src="../resources/img/${listView.id}.jpg">
-                    <div class="bottom-left-description-image">
-                        <p style="text-align: left; font-size: 180%; padding: 0%">${listView.name}</p>
-                        <p style="text-align: left; font-size: 130%; padding: 0%">${listView.place}</p>
-                    </div>
-                    <div class="bottom-right-description-image">
-                        <a href="/object/${listView.id}">Ocena: ${listView.mark}</a>
+        <div style="margin-top: 30px;">
+            <c:if test="${not empty topObjects}">
+                <c:forEach var="listView" items="${topObjects}">
 
-                    </div>
-                </div>--%>
-            </c:forEach>
-        </c:if>
+                    <a class="col-md-4" style="padding-bottom: 20px; padding-left: 0px; padding-right: 0px;" href="/object/${listView.id}">
+                        <img class="col-md-12"  src="../resources/img/${listView.id}.jpg">
+                        <div class="bottom-left-description-image">
+                            <p style="text-align: left; font-size: 180%; padding: 0%">${listView.name}</p>
+                            <p style="text-align: left; font-size: 130%; padding: 0%">${listView.place}</p>
+                        </div>
+                        <div class="bottom-right-description-image">
+                            Ocena: ${listView.mark}
+                        </div>
+                    </a>
+                </c:forEach>
+            </c:if>
         </div>
     </div>
 </div>
 
-<div class="footer navbar-fixed-bottom" style="background-color: whitesmoke">
+<div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -215,5 +195,14 @@
         </div>
     </div>
 </div>
+
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/scrollReveal.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </body>
 </html>
