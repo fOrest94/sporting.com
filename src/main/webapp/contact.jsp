@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>kennyS - centrum sportowe</title>
+    <title>sporting.com</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
@@ -155,7 +155,7 @@
 
         <div class="col-md-6 text-justify" data-scrollreveal="enter top and move 100px, wait 0.3s" style=" padding-bottom: 20px;">
             <h3 style="margin-top: 15px;  color: white;"><strong>Nasza lokalizacja</strong></br>
-                <hr /><h3 style=" color: white">Skarżyńskiego 3, 31-866 Kraków</br>Telefon: +48 070 099 769</br>Email: kennyssport@gmail.com</h3>
+                <hr /><h3 style=" color: white">Skarżyńskiego 3, 31-866 Kraków</br>Telefon: +48 070 099 769</br>Email: sporting@gmail.com</h3>
         </div>
 
         <div class="col-md-6 text-justify" data-scrollreveal="enter top and move 100px, wait 0.3s" style=" padding-bottom: 20px;">
@@ -205,7 +205,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="/" style="color: black;">© 2016 kennyS.</a></li>
+                    <li><a href="/" style="color: black;">@ 2018 sporting.com.</a></li>
                     <li><a href="#" style="color: black;">Warunki korzystania z serwisu</a></li>
                     <li><a href="#" style="color: black;">Polityka prywatności</a></li>
                 </ul>

@@ -76,7 +76,7 @@ public class ReservationController {
         System.out.print(reservation.toString());
         model.addAttribute("topObjects", rankingService.getTopSportObjects());
         model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
-        return "redirect:/index";
+        return "index";
     }
 
 

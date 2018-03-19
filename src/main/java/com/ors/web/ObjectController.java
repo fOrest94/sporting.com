@@ -127,7 +127,6 @@ public class ObjectController {
             String newMark = String.valueOf((Integer.valueOf(stars) + tempMark*marksCount)/(marksCount+1)).substring(0,3);
             objectService.updateMark(newMark, String.valueOf(marksCount+1), id);
         }
-        System.out.println("sssssssssssssssssssssssssssssss");
         model.addAttribute("objectForm", objectService.findById(id));
         model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
         model.addAttribute("objectDutyHours", priceListService.findByObjectId(id));

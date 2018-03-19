@@ -54,7 +54,7 @@ public class ContactController {
         contactService.saveMessage(contact);
         model.addAttribute("topObjects", rankingService.getTopSportObjects());
         model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
-        return "redirect:/index";
+        return "index";
     }
 
     @RequestMapping(value = "/contact/{ObjectId}", method = RequestMethod.GET)
@@ -83,6 +83,6 @@ public class ContactController {
 
         model.addAttribute("topObjects", rankingService.getTopSportObjects());
         model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
-        return "redirect:/object/"+ObjectId;
+        return "object/"+ObjectId;
     }
 }

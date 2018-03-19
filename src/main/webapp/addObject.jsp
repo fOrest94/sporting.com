@@ -27,7 +27,7 @@
                 <form:form method="POST" modelAttribute="objectForm" class="form-signin">
 
                     <div class="form-group">
-                        <label for="place" class="text-left col-md-3 control-label " style="text-align: left">Nazwa okiektu</label>
+                        <label for="place" class="text-left col-md-3 control-label " style="text-align: left">Nazwa obiektu</label>
                         <div class="col-md-4 " style="margin-right: 150px;">
                             <spring:bind path="name">
                                 <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -107,7 +107,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="/" style="color: black;">© 2016 kennyS.</a></li>
+                    <li><a href="/" style="color: black;">@ 2018 sporting.com.</a></li>
                     <li><a href="#" style="color: black;">Warunki korzystania z serwisu</a></li>
                     <li><a href="#" style="color: black;">Polityka prywatności</a></li>
                 </ul>

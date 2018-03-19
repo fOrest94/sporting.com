@@ -3,13 +3,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="pl_PL">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>kennyS - centrum sportowe</title>
+    <title>sporting.com</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
@@ -20,6 +18,7 @@
     <script src="../resources/js/script.js"></script>
     <script src="../resources/js/scrollReveal.js"></script>
     <script src="../resources/js/custom.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" >
@@ -92,8 +91,11 @@
                             <form:input type="text" path="objectPlace" class="form-control" id="miasto"  placeholder="Wpisz miejscowość"/>
                         </div>
                         <div class="col-md-12" style="padding-top: 20px;">
-                            <label for="data">Termin</label>
-                            <form:input type="text" path="date" class="form-control" id="data" placeholder="Wybierz date"/>
+                            <label for="datetimepicker">Termin</label><br>
+                            <form:input type="text" path="date" id="datetimepicker"
+                                        onchange="evaluatePrice()" placeholder="Wybierz date"/>
+                            </br>
+                            <form:errors path="date"/>
                         </div>
                         <div class="col-md-12" style="margin-top: 30px; padding: 0px;">
                             <div class="col-md-2"  style="padding-top: 5px;padding-right: 0px;padding-bottom: 0px;">
@@ -273,7 +275,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="/" style="color: black;">© 2016 kennyS.</a></li>
+                    <li><a href="/" style="color: black;">@ 2018 sporting.com.</a></li>
                     <li><a href="#" style="color: black;">Warunki korzystania z serwisu</a></li>
                     <li><a href="#" style="color: black;">Polityka prywatności</a></li>
                 </ul>
@@ -307,6 +309,14 @@
         </div>
     </div>
 </div>
+
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/scrollReveal.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 </body>
 </html>

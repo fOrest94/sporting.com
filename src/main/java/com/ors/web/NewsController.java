@@ -80,7 +80,7 @@ public class NewsController {
         } else
             newsService.save(news);
 
-        return "redirect:/userProfileSettings";
+        return "userProfileSettings";
     }
 
     @RequestMapping(value = "/userProfileSettings/edit", method = RequestMethod.POST)
@@ -107,7 +107,7 @@ public class NewsController {
                 model.addAttribute("objectList", objectService.findAll());
                 model.addAttribute("newsList", newsService.findAll());
 
-                return "redirect:/userProfileSettings";
+                return "userProfileSettings";
             }
         }
         return "error";

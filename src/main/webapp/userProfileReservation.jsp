@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>kennyS - centrum sportowe</title>
+    <title>sporting.com</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
@@ -190,7 +190,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="/" style="color: black;">© 2016 kennyS.</a></li>
+                    <li><a href="/" style="color: black;">@ 2018 sporting.com.</a></li>
                     <li><a href="#" style="color: black;">Warunki korzystania z serwisu</a></li>
                     <li><a href="#" style="color: black;">Polityka prywatności</a></li>
                 </ul>
