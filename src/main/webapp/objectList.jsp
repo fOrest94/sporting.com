@@ -76,35 +76,34 @@
         <ul class="nav navbar-nav" >
             <li><a style="color:#428bca;" href="/">Wyszukaj ośrodek</a></li>
             <li><a style="color:#428bca;" href="/news">Aktualności</a></li>
-            <li><a style="color:#428bca;" href="/contact">Kontakt</a></li>
+            <c:if test="${user.role != 'ADMINISTRATOR'}"><li><a style="color:#428bca;" href="/contact">Kontakt</a></li></c:if>
         </ul>
     </div>
+</div>
 
-
-    <div class="container" style="background-color: white">
-        <div class="col-lg-3" style="min-height: 370px;">
-            <div class="search" style="padding-top: 80px;">
-            <div class="form-section">
+<div class="container" style="background-color: white; min-height: 840px">
+    <div class="col-lg-3" style="min-height: 370px;">
+        <div class="search" style="padding-top: 80px;">
+            <div class="form-section" >
                 <div class="row">
-                    <form:form method="POST" name="showListOfObjectForm"  action="/" modelAttribute="showListOfObjectForm" class="form-signin">
+                    <form:form method="POST" name="showListOfObjectForm" action="/" modelAttribute="showListOfObjectForm" class="form-signin">
                         <div class="col-md-12">
                             <label for="miasto">Miejscowość</label>
                             <form:input type="text" path="objectPlace" class="form-control" id="miasto"  placeholder="Wpisz miejscowość"/>
                         </div>
                         <div class="col-md-12" style="padding-top: 20px;">
                             <label for="datetimepicker">Termin</label><br>
-                            <form:input type="text" path="date"
-                                        onchange="evaluatePrice()" placeholder="Wybierz date"  id="datetimepicker"/>
+                            <form:input type="text" path="date" id="datetimepicker"
+                                        onchange="evaluatePrice()" placeholder="Wybierz date"/>
                             </br>
                             <form:errors path="date"/>
-
                         </div>
                         <div class="col-md-12" style="margin-top: 30px; padding: 0px;">
-                            <div class="col-md-2"  style="padding-top: 5px;">
+                            <div class="col-md-2"  style="padding-top: 5px;padding-right: 0px;padding-bottom: 0px;">
                                 Od:
                             </div>
-                            <div class="col-md-4"  style="padding-top: 5px;">
-                                  <spring:bind path="startTime">
+                            <div class="col-md-4"  style="padding-top: 5px;padding-right: 0px;padding-left: 0px;padding-bottom: 0px;">
+                                <spring:bind path="startTime">
                                     <form:select path="startTime" id="hourOfReservation"
                                                  onchange="evaluatePrice()"
                                                  style="border-radius: 3px; border-width: 1px; font-size: 16px;">
@@ -122,14 +121,14 @@
                                         <option value="18:00">18:00</option>
                                         <option value="19:00">19:00</option>
                                         <option value="20:00">20:00</option>
-                                        <option value="21:00">2F1:00</option>
+                                        <option value="21:00">21:00</option>
                                     </form:select>
                                 </spring:bind>
                             </div>
-                            <div class="col-md-2"  style="padding-top: 5px;">
+                            <div class="col-md-2"  style="padding-top: 5px;padding-right: 0px;padding-bottom: 0px;">
                                 Do:
                             </div>
-                            <div class="col-md-4"  style="padding-top: 5px; padding-right: 10px;">
+                            <div class="col-md-4"  style="padding-top: 5px;padding-right: 0px;padding-left: 0px;padding-bottom: 0px;">
                                 <spring:bind path="endTime">
                                     <form:select path="endTime" id="hourOfEndReservation"
                                                  onchange="evaluatePrice()"
@@ -160,41 +159,41 @@
                     </form:form>
                 </div>
             </div>
-            </div>
         </div>
-        <div class="col-lg-9" style="min-height: 370px; padding-top: 10px; padding-bottom: 15px; margin-top: 10px;">
-            <p style="font-size: 150%; font-family: 'Audiowide', cursive;">Znaleziono ${objectList.size()} wyników dla: ${objectPlace}</p>
-            <c:if test="${not empty objectList}">
-            <c:forEach var="listView" items="${objectList}">
-                <div class="col-lg-12" style="margin-bottom: 12px; padding: 15px 10px 0px 0px;border-radius: 10px; border: 1px solid #9d9d9d; min-height: 300px">
-                    <div class="col-lg-6" style="padding-top: 15px;">
-                        <img class="col-lg-12" src="../${listView.picture}" >
+    </div>
+    <div class="col-lg-9" style="min-height: 370px; padding-top: 10px; padding-bottom: 15px; margin-top: 10px;">
+        <p style="font-size: 150%; font-family: 'Audiowide', cursive;">Znaleziono ${objectList.size()} wyników dla: ${objectPlace}</p>
+        <c:if test="${not empty objectList}">
+        <c:forEach var="listView" items="${objectList}">
+            <div class="col-lg-12" style="margin-bottom: 12px; padding: 15px 10px 0px 0px;border-radius: 10px; border: 1px solid #9d9d9d; min-height: 300px">
+                <div class="col-lg-6" style="padding-top: 15px;">
+                    <img class="col-lg-12" src="../${listView.picture}" >
+                </div>
+                <div class="col-lg-6">
+                    <div class="col-lg-12" style="min-height: 210px;">
+                        <p style="font-family: 'Audiowide', cursive; font-size: 150%; color: #101010; text-shadow: 4px 4px white; padding-top: 7px">${listView.name}</p>
+                        <p style="cursive; font-size: 120%; color: #101010; text-shadow: 4px 4px white;">${listView.place}, ${listView.street}</p>
+                        <p style="width: 350px; height: 100px; white-space: wrap; overflow: hidden; text-overflow: ellipsis; ">${listView.description}</p>
+                        <br>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="col-lg-12" style="min-height: 210px;">
-                            <p style="font-family: 'Audiowide', cursive; font-size: 150%; color: #101010; text-shadow: 4px 4px white; padding-top: 7px">${listView.name}</p>
-                            <p style="cursive; font-size: 120%; color: #101010; text-shadow: 4px 4px white;">${listView.place}, ${listView.street}</p>
-                            <p style="width: 350px; height: 100px; white-space: wrap; overflow: hidden; text-overflow: ellipsis; ">${listView.description}</p>
-                            <br>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="col-lg-6">
-                                <div align="left" style="padding-top: 5px;">
-                                    Cena: 40 zł/h
-                                </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <div align="left" style="padding-top: 5px;">
+                                Cena: 40 zł/h
                             </div>
-                            <div class="col-lg-6">
-                                <div align="right">
-                                    <a class="btn btn-primary" href="/object/${listView.id}">Sprawdź</a>
-                                </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div align="right">
+                                <a class="btn btn-primary" href="/object/${listView.id}">Sprawdź</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </c:forEach>
-            </c:if>
-        </div>
+            </div>
+        </c:forEach>
+        </c:if>
     </div>
+</div>
 
 <div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">

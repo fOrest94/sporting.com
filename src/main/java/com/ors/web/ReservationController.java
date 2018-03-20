@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ import java.util.List;
 public class ReservationController {
 
     @Autowired
-    private ReservationValidator validator;
+    private ReservationValidator reservationValidator;
 
     @Autowired
     private PriceListService priceListService;
@@ -41,42 +43,80 @@ public class ReservationController {
     @RequestMapping(value = "/reservation/{objectId}", method = RequestMethod.GET)
     public String reservationAssignment(@PathVariable("objectId") Long objectId, HttpServletRequest request, Model model) {
 
-        User user = priceListService.getUser(request.getUserPrincipal().getName());
-        PriceList price = priceListService.findById(Long.valueOf(objectId));
-        Object object = objectService.findById(price.getObjectId());
-        ObjectDutyHours objectDutyHours = objectDutyHoursService.findByObjectId(object.getId());
+        System.out.println("1");
+        User user = priceListService.getUser(request.getUserPrincipal().getName());System.out.println("1");
+        //PriceList price = priceListService.findById(Long.valueOf(objectId));System.out.println("1");
+        Object object = objectService.findById(objectId);System.out.println("1");
+        //ObjectDutyHours objectDutyHours = objectDutyHoursService.findByObjectId(object.getId());System.out.println("1");
 
         model.addAttribute("user", user);
-        model.addAttribute("price", price);
+        //model.addAttribute("price", price);
         model.addAttribute("object", object);
-        model.addAttribute("objectDutyHours", objectDutyHours);
+        //model.addAttribute("objectDutyHours", objectDutyHours);
         model.addAttribute("reservationForm", new Reservation());
 
         return "reservation";
     }
 
     @RequestMapping(value = "/reservation/{objectId}", method = RequestMethod.POST)
-    public String reservationAssignment(@ModelAttribute("reservationForm") Reservation reservation, BindingResult bindingResult, Model model) {
-        System.out.println("ssssssssssssss    cxvcxv "+reservation.getDayOfReservation()+"  "+reservation.getHourOfReservation()+"  "+reservation.getHourOfEndReservation());
-        validator.validate(reservation,bindingResult);
+    public String reservationAssignment(@ModelAttribute("reservationForm") Reservation reservation, @PathVariable("objectId") Long objectId, BindingResult bindingResult, Model model) {
+
+        reservationValidator.validate(reservation,bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "reservation";
         }
 
-        /*System.out.println(reservation);
-        List<Reservation> reservationList = reservationService.findAll();
+        int startTime = Integer.valueOf(reservation.getHourOfReservation().replace(":", ""));
+        int endTime = Integer.valueOf(reservation.getHourOfEndReservation().replace(":",""));
+        int date = Integer.valueOf(reservation.getDayOfReservation().replace("/",""));
 
-        for (Reservation reserv: reservationList) {
-            if(reserv.getDayOfReservation().equals(reservation.getDayOfReservation()) && reserv.getHourOfReservation().equals(reservation.))
+        List<Reservation> reservationList = reservationService.findAllByObjectId(objectId);
+
+
+        List<Reservation> reservationListProperDay = new ArrayList<>();
+        for (Reservation reserv  : reservationList) {
+            int tempDate = Integer.valueOf(reserv.getDayOfReservation().replace("/",""));
+
+            if( (tempDate == date))
+                reservationListProperDay.add(reserv);
         }
-        if(reservationList.)*/
-        reservationService.save(reservation);
-        // Trzeba dodać walidacje co w wypadku jak juz istnieje taka rezerwacja
-        System.out.print(reservation.toString());
-        model.addAttribute("topObjects", rankingService.getTopSportObjects());
-        model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
-        return "index";
+
+        if(reservationListProperDay.size() == 0){
+            reservationService.save(reservation);
+            model.addAttribute("topObjects", rankingService.getTopSportObjects());
+            model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
+            return "index";
+        }
+        else {
+            int counter = 0;
+            int sizeOfCurrentReservation = reservationListProperDay.size();
+            System.out.println("size cur "+sizeOfCurrentReservation);
+            for (Reservation reserv: reservationListProperDay) {
+                int tempStart = Integer.valueOf(reserv.getHourOfReservation().replace(":", ""));
+                int tempEnd = Integer.valueOf(reserv.getHourOfEndReservation().replace(":",""));
+                if(endTime <= tempStart){
+                    counter++;System.out.println("xxx "+endTime+"  "+tempStart+"  ha "+ reserv.getObjectId());
+                }
+                else if (startTime >= tempEnd){
+                    counter++;System.out.println("xxx "+startTime+"  "+tempEnd+"  ham "+ reserv.getObjectId());
+                }
+            }
+
+            if(counter < sizeOfCurrentReservation){
+                System.out.println("number is "+counter+" sdsds "+sizeOfCurrentReservation);
+                model.addAttribute("topObjects", rankingService.getTopSportObjects());
+                model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
+                bindingResult.rejectValue("dayOfReservation", "Reservation.noMoreFreePlace");
+                return "reservation";
+            }
+            else {
+                reservationService.save(reservation);
+                model.addAttribute("topObjects", rankingService.getTopSportObjects());
+                model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
+                return "index";
+            }
+        }
     }
 
 

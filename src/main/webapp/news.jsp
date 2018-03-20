@@ -76,7 +76,7 @@
         <ul class="nav navbar-nav" >
             <li><a style="color:#428bca;" href="/">Wyszukaj ośrodek</a></li>
             <li><a style="color:#428bca;" href="/news">Aktualności</a></li>
-            <li><a style="color:#428bca;" href="/contact">Kontakt</a></li>
+            <c:if test="${user.role != 'ADMINISTRATOR'}"><li><a style="color:#428bca;" href="/contact">Kontakt</a></li></c:if>
         </ul>
     </div>
 </div>

@@ -1,5 +1,6 @@
 package com.ors.validator;
 
+import com.ors.DTO.SearchObjectDTO;
 import com.ors.model.Reservation;
 import com.ors.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.validation.Validator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Component
@@ -57,22 +60,21 @@ public class ReservationValidator implements Validator {
 
         if (!isEndOfReservationLaterThanStartOfReserv(reservation.getHourOfReservation(),
                 reservation.getHourOfEndReservation())) {
-            errors.rejectValue("hourOfEndReservation", "Reservation.invalidHoursOfReservation");
+            //errors.rejectValue("hourOfEndReservation", "Reservation.invalidHoursOfReservation");
+        }
+        else if (!gotDateIsNotBeforeThanToday(reservation.getDayOfReservation())) {
+            //errors.rejectValue("dayOfReservation", "Reservation.invalidDateOfReservation");
         }
 
-        if (!gotDateIsNotBeforeThanToday(reservation.getDayOfReservation())) {
-            errors.rejectValue("dayOfReservation", "Reservation.invalidDateOfReservation");
+        else if (!gotDateIsNotBeforeThanToday(reservation.getDayOfReservation())) {
+            //errors.rejectValue("dayOfReservation", "Reservation.invalidDateOfReservation");
         }
 
-        if (!gotDateIsNotBeforeThanToday(reservation.getDayOfReservation())) {
-            errors.rejectValue("dayOfReservation", "Reservation.invalidDateOfReservation");
-        }
-
-        if(reservationService.findByProperTime(reservation.getDayOfReservation(),reservation.getHourOfReservation(),reservation.getHourOfEndReservation()).size() > 0){
+        else if (reservationService.findByProperTime(reservation.getDayOfReservation(), reservation.getHourOfReservation(), reservation.getHourOfEndReservation()).size() > 0) {
             errors.rejectValue("dayOfReservation", "Reservation.existInDatabase");
         }
 
-        if(reservationService.findByProperTime(reservation.getDayOfReservation(),reservation.getHourOfReservation(),reservation.getHourOfEndReservation()).size() > 0){
+        else if (reservationService.findByProperTime(reservation.getDayOfReservation(), reservation.getHourOfReservation(), reservation.getHourOfEndReservation()).size() > 0) {
             errors.rejectValue("dayOfReservation", "Reservation.existInDatabase");
         }
     }

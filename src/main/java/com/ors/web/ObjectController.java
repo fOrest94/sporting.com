@@ -57,9 +57,11 @@ public class ObjectController {
 
         List<Reservation> reservationList = new ArrayList<>();
         for (Object object: objectList) {
-            Reservation temp = reservationService.findByObjectId(object.getId());
-            if( temp != null)
-            reservationList.add(temp);
+            List<Reservation> temp = reservationService.findAllByObjectId(object.getId());
+            for (Reservation tempPlus: temp) {
+                if( tempPlus != null)
+                    reservationList.add(tempPlus);
+            }
         }
 
         int startTime = Integer.valueOf(searchObjectDTO.getStartTime().replace(":", ""));
@@ -69,12 +71,21 @@ public class ObjectController {
         for (Reservation reservation: reservationList) {
             int tempStart = Integer.valueOf(reservation.getHourOfReservation().replace(":", ""));
             int tempEnd = Integer.valueOf(reservation.getHourOfEndReservation().replace(":",""));
-            if(endTime <= tempStart)
-                objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
-            else if (startTime >= tempEnd)
-                objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
 
+            if(searchObjectDTO.getDate().equals(reservation.getDayOfReservation()) && endTime <= tempStart)
+                objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
+            else if (searchObjectDTO.getDate().equals(reservation.getDayOfReservation()) && startTime >= tempEnd)
+                objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
         }
+
+       /* List<Object> newList = new ArrayList<>();
+
+        for (Object object:objectListApprepiate) {
+
+                for (Object object1:newList) {
+                    if(object)
+                }
+        }*/
 
         model.addAttribute("objectList", objectListApprepiate);
         model.addAttribute("objectPlace", searchObjectDTO.getObjectPlace());

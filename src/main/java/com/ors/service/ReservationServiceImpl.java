@@ -41,4 +41,9 @@ public class ReservationServiceImpl implements ReservationService{
     public Reservation findByObjectId(Long aLong) {
         return reservationRepository.findByObjectId(aLong);
     }
+
+    @Override
+    public List<Reservation> findAllByObjectId(Long aLong) {
+        return reservationRepository.findAllByObjectId(aLong);
+    }
 }

@@ -76,14 +76,13 @@
         <ul class="nav navbar-nav" >
             <li><a style="color:#428bca;" href="/">Wyszukaj ośrodek</a></li>
             <li><a style="color:#428bca;" href="/news">Aktualności</a></li>
-            <li><a style="color:#428bca;" href="/offer">Kontakt</a></li>
+            <c:if test="${user.role != 'ADMINISTRATOR'}"><li><a style="color:#428bca;" href="/contact">Kontakt</a></li></c:if>
         </ul>
     </div>
 </div>
 <div id="content-home" >
     <div class="container" style="padding-top: 20px; background-color: white">
         <div class="col-lg-3 col-lg-offset-1">
-
             <div class="panel-custom-container" >
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -95,19 +94,22 @@
                         </div>
                     </c:if>
                     <c:if test="${user.role != 'ADMINISTRATOR'}">
-                    <div class="panel-body">
-                        <h3 class="panel-title"><a href="/userProfileReservation">Rezerwacje</a></h3>
-                    </div>
+                        <div class="panel-body">
+                            <h3 class="panel-title"><a href="/userProfileReservation">Rezerwacje</a></h3>
+                        </div>
                     </c:if>
                     <div class="panel-body">
                         <h3 class="panel-title"><a href=" /userProfileEdit">Ustawienia</a></h3>
+                    </div>
+                    <div class="panel-body">
+                        <h3 class="panel-title"><a href="/userProfileMessages">Wiadomości</a></h3>
                     </div>
                     <c:if test="${user.role == 'ADMINISTRATOR'}">
                         <div class="panel-body">
                             <h3 class="panel-title"><a href="/userProfileSettings">Dodaj aktualność</a></h3>
                         </div>
                         <div class="panel-body">
-                            <h3 class="panel-title"><a href="/userProfileMessages">Wiadomości</a></h3>
+                            <h3 class="panel-title"><a href="/userObjectManagement">Zarządzanie obiektami</a></h3>
                         </div>
                         <div class="panel-body">
                             <h3 class="panel-title"><a href="/reports">Raporty</a></h3>
@@ -115,7 +117,6 @@
                     </c:if>
                 </div>
             </div>
-
         </div>
         <div class="col-lg-7">
             <div class="container">
@@ -290,7 +291,6 @@
         </div>
     </div>
 </div>
-
 <div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">

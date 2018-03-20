@@ -16,4 +16,5 @@ public interface ReservationRepository  extends JpaRepository<Reservation, Long>
     @Query("select res from Reservation res where res.dayOfReservation=:date and res.hourOfReservation=:startTime and res.hourOfEndReservation=:endTime")
     List<Reservation> findByProperTime(@Param("date") String date, @Param("startTime") String startTime, @Param("endTime")  String endTime);
     Reservation findByObjectId(Long aLong);
+    List<Reservation> findAllByObjectId(Long aLong);
 }

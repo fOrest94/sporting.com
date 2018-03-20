@@ -76,103 +76,101 @@
         <ul class="nav navbar-nav" >
             <li><a style="color:#428bca;" href="/">Wyszukaj ośrodek</a></li>
             <li><a style="color:#428bca;" href="/news">Aktualności</a></li>
-            <li><a style="color:#428bca;" href="/contact">Kontakt</a></li>
+            <c:if test="${user.role != 'ADMINISTRATOR'}"><li><a style="color:#428bca;" href="/contact">Kontakt</a></li></c:if>
         </ul>
     </div>
-
-<div id="content-home">
-    <div class="container" style="padding-top: 20px; background-color: white">
-        <div class="col-lg-3 col-lg-offset-1">
-
-            <div class="panel-custom-container" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><a href="/userProfile">Profil</a></h3>
-                    </div>
-                    <c:if test="${user.objectId != null}">
-                        <div class="panel-body">
-                            <h3 class="panel-title"><a href="/userObject/${user.objectId}">Obiekt</a></h3>
-                        </div>
-                    </c:if>
-                    <c:if test="${user.role != 'ADMINISTRATOR'}">
-                        <div class="panel-body">
-                            <h3 class="panel-title"><a href="/userProfileReservation">Rezerwacje</a></h3>
-                        </div>
-                    </c:if>
-                    <div class="panel-body">
-                        <h3 class="panel-title"><a href=" /userProfileEdit">Ustawienia</a></h3>
-                    </div>
-                    <div class="panel-body">
-                        <h3 class="panel-title"><a href="/userProfileMessages">Wiadomości</a></h3>
-                    </div>
-                    <c:if test="${user.role == 'ADMINISTRATOR'}">
-                        <div class="panel-body">
-                            <h3 class="panel-title"><a href="/userProfileSettings">Dodaj aktualność</a></h3>
-                        </div>
-                        <div class="panel-body">
-                            <h3 class="panel-title"><a href="/userObjectManagement">Zarządzanie obiektami</a></h3>
-                        </div>
-                        <div class="panel-body">
-                            <h3 class="panel-title"><a href="/reports">Raporty</a></h3>
-                        </div>
-                    </c:if>
+</div>
+<div id="content-home" >
+<div class="container" style="padding-top: 20px; background-color: white; min-height: 840px">
+    <div class="col-lg-3 col-lg-offset-1">
+        <div class="panel-custom-container" >
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="/userProfile">Profil</a></h3>
                 </div>
+                <c:if test="${user.objectId != null}">
+                    <div class="panel-body">
+                        <h3 class="panel-title"><a href="/userObject/${user.objectId}">Obiekt</a></h3>
+                    </div>
+                </c:if>
+                <c:if test="${user.role != 'ADMINISTRATOR'}">
+                    <div class="panel-body">
+                        <h3 class="panel-title"><a href="/userProfileReservation">Rezerwacje</a></h3>
+                    </div>
+                </c:if>
+                <div class="panel-body">
+                    <h3 class="panel-title"><a href=" /userProfileEdit">Ustawienia</a></h3>
+                </div>
+                <div class="panel-body">
+                    <h3 class="panel-title"><a href="/userProfileMessages">Wiadomości</a></h3>
+                </div>
+                <c:if test="${user.role == 'ADMINISTRATOR'}">
+                    <div class="panel-body">
+                        <h3 class="panel-title"><a href="/userProfileSettings">Dodaj aktualność</a></h3>
+                    </div>
+                    <div class="panel-body">
+                        <h3 class="panel-title"><a href="/userObjectManagement">Zarządzanie obiektami</a></h3>
+                    </div>
+                    <div class="panel-body">
+                        <h3 class="panel-title"><a href="/reports">Raporty</a></h3>
+                    </div>
+                </c:if>
             </div>
-
         </div>
-        <div class="col-lg-7">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7 ">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="box box-info">
-                                    <div class="box-body">
-                                        <div class="col-sm-6">
-                                            <div align="center"><img alt="User Pic"
-                                                                     src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-                                                                     id="profile-image1"
-                                                                     class="img-circle img-responsive">
 
-                                                <input id="profile-image-upload" class="hidden" type="file">
-                                            </div>
-                                            <br>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <h4 style="color:#428bca;">${user.username} </h4></span>
-                                            <span>${user.role} </p></span>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="reservationsContent">
-                                                <h4 style="text-align: left; padding-left: 5px;">Lista wiadomości</h4>
-                                                <table class="table table-bordered" style=" font-size: 13px;">
-                                                    <thead>
-                                                    <tr class="active">
-                                                        <th>#</th>
-                                                        <th>Imię</th>
-                                                        <th>Adres email</th>
-                                                        <th>Treść</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody style="background-color: white;">
-                                                    <c:set var="count" value="0" scope="page"/>
-                                                    <c:if test="${not empty listsOfMessages}">
-                                                        <c:forEach var="listValue" items="${listsOfMessages}">
-                                                            <c:set var="count" value="${count + 1}" scope="page"/>
-                                                            <tr>
-                                                                <th><c:out value="count"></c:out></th>
-                                                                <th>${listValue.contactName}</th>
-                                                                <th>${listValue.contactEmail}</th>
-                                                                <th>${listValue.contactContent}</th>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </c:if>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 ">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    <div class="col-sm-6">
+                                        <div align="center"><img alt="User Pic"
+                                                                 src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                                                                 id="profile-image1"
+                                                                 class="img-circle img-responsive">
 
+                                            <input id="profile-image-upload" class="hidden" type="file">
+                                        </div>
+                                        <br>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <h4 style="color:#428bca;">${user.username} </h4></span>
+                                        <span>${user.role} </p></span>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="reservationsContent">
+                                            <h4 style="text-align: left; padding-left: 5px;">Lista wiadomości</h4>
+                                            <table class="table table-bordered" style=" font-size: 13px;">
+                                                <thead>
+                                                <tr class="active">
+                                                    <th>#</th>
+                                                    <th>Imię</th>
+                                                    <th>Adres email</th>
+                                                    <th>Treść</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="background-color: white;">
+                                                <c:set var="count" value="0" scope="page"/>
+                                                <c:if test="${not empty listsOfMessages}">
+                                                    <c:forEach var="listValue" items="${listsOfMessages}">
+                                                        <c:set var="count" value="${count + 1}" scope="page"/>
+                                                        <tr>
+                                                            <th><c:out value="count"></c:out></th>
+                                                            <th>${listValue.contactName}</th>
+                                                            <th>${listValue.contactEmail}</th>
+                                                            <th>${listValue.contactContent}</th>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:if>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -182,7 +180,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
