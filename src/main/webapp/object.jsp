@@ -54,7 +54,7 @@
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
                         <div class="col-md-4">
                             <button class="btn btn-primary navbar-btn">
-                                <a href="userProfile" style="color: white"><strong>Mój profil</strong></a>
+                                <a href="/userProfile" style="color: white"><strong>Mój profil</strong></a>
                             </button>
                         </div>
                         <div class="col-md-8" style="background-color: white; font-size: 110%; margin-top: 8px; height: 34px; border-radius: 2px;">

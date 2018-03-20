@@ -100,7 +100,7 @@ public class UserController {
 
     @RequestMapping(value = "/userProfile", method = RequestMethod.GET)
     public String userProfile(Model model, HttpServletRequest request) {
-
+        System.out.println("mam downa");
         User user = priceListService.getUser(request.getUserPrincipal().getName());
         model.addAttribute("user", user);
         return "userProfile";
@@ -109,8 +109,9 @@ public class UserController {
     @RequestMapping(value = "/userObject/{id}", method = RequestMethod.GET)
     public String userObjectShow(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
 
+        System.out.println("ssssssssssssssssssss");
         User user = priceListService.getUser(request.getUserPrincipal().getName());
-
+        System.out.println("ssssssssssssssssssss");
         model.addAttribute("objectForm", objectService.findById(id));
         model.addAttribute("user", user);
 

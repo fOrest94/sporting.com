@@ -55,7 +55,7 @@
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
                         <div class="col-md-4">
                             <button class="btn btn-primary navbar-btn">
-                                <a href="userProfile" style="color: white"><strong>Mój profil</strong></a>
+                                <a href="/userProfile" style="color: white"><strong>Mój profil</strong></a>
                             </button>
                         </div>
                         <div class="col-md-8" style="background-color: white; font-size: 110%; margin-top: 8px; height: 34px; border-radius: 2px;">
@@ -79,9 +79,9 @@
             <c:if test="${user.role != 'ADMINISTRATOR'}"><li><a style="color:#428bca;" href="/contact">Kontakt</a></li></c:if>
         </ul>
     </div>
-
+</div>
 <div id="content-home">
-    <div class="container" style="padding-top: 20px; background-color: white">
+    <div class="container" style="padding-top: 20px; background-color: white; height: 840px">
         <div class="col-lg-3 col-lg-offset-1">
 
             <div class="panel-custom-container" >
@@ -169,8 +169,8 @@
                                                                </c:otherwise>
                                                                </c:choose>
                                                                 <th>${listValue.dayInfo}</th>
-                                                                <th>${listValue.monthInfo}</th>
-                                                                <th>${listValue.yearInfo}</th>
+                                                                <th>${listValue.dayInfo}</th>
+                                                                <th>${listValue.dayInfo}</th>
                                                             </tr>
                                                         </c:forEach>
                                                     </c:if>

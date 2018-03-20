@@ -80,7 +80,7 @@
         </ul>
     </div>
 </div>
-
+<div id="content-home">
     <div class="container" style="padding-top: 20px; background-color: white">
         <div class="col-lg-3 col-lg-offset-1">
             <div class="panel-custom-container" >
@@ -162,7 +162,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="col-xs-3" style="text-align: center">
+                                                                <td class="col-xs-3" style="text-align: center; padding: 0%; margin: 0%">
                                                                         <a href="/object/${listValue.id}">${listValue.name}</a>
                                                                 </td>
                                                             </tr>
@@ -179,7 +179,7 @@
                                                         </c:forEach>
                                                         </tbody>
                                                     </table>
-                                                    <div class="col-lg-4 col-lg-offset-8">
+                                                    <div class="col-lg-8 col-lg-offset-4" style="margin-bottom: 40px;">
                                                         <button name="operation" value="update" style="width: 200px;" class="btn btn-primary">Potwierdź tożsamość</button>
                                                         <button name="operation" value="delete" class="btn btn-danger">Usuń</button>
                                                     </div>
@@ -195,6 +195,7 @@
             </div>
         </div>
     </div>
+</div>
 <div class="footer navbar-fixed-bottom" style="background-color: #cccccc">
     <div class="container">
         <div class="row">
