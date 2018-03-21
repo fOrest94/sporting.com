@@ -1,5 +1,6 @@
 package com.ors.web;
 
+import com.ors.DTO.SearchObjectDTO;
 import com.ors.model.File;
 import com.ors.model.Object;
 import com.ors.model.User;
@@ -52,6 +53,9 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private RankingService rankingService;
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
 
@@ -71,6 +75,8 @@ public class UserController {
         userService.save(userForm);
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
+        model.addAttribute("topObjects", rankingService.getTopSportObjects());
+        model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
         return "index";
     }
 

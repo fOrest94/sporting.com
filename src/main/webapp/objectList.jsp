@@ -167,7 +167,7 @@
         <c:forEach var="listView" items="${objectList}">
             <div class="col-lg-12" style="margin-bottom: 12px; padding: 15px 10px 0px 0px;border-radius: 10px; border: 1px solid #9d9d9d; min-height: 300px">
                 <div class="col-lg-6" style="padding-top: 15px;">
-                    <img class="col-lg-12" src="../${listView.picture}" >
+                    <img class="col-lg-12" src="../../resources/img/${listView.id}.1.jpg" >
                 </div>
                 <div class="col-lg-6">
                     <div class="col-lg-12" style="min-height: 210px;">
