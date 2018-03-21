@@ -1,5 +1,6 @@
 package com.ors.web;
 
+import com.ors.DTO.ObjectDateDTO;
 import com.ors.DTO.SearchObjectDTO;
 import com.ors.model.Object;
 import com.ors.model.Reservation;
@@ -78,15 +79,6 @@ public class ObjectController {
                 objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
         }
 
-       /* List<Object> newList = new ArrayList<>();
-
-        for (Object object:objectListApprepiate) {
-
-                for (Object object1:newList) {
-                    if(object)
-                }
-        }*/
-
         model.addAttribute("objectList", objectListApprepiate);
         model.addAttribute("objectPlace", searchObjectDTO.getObjectPlace());
         return "objectList";
@@ -98,6 +90,7 @@ public class ObjectController {
         model.addAttribute("objectForm", objectService.findById(id));
         model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
         model.addAttribute("objectDutyHours", priceListService.findByObjectId(id));
+        model.addAttribute("showListObjectDate", new ObjectDateDTO());
         return "object";
     }
 

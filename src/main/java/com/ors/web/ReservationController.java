@@ -1,5 +1,6 @@
 package com.ors.web;
 
+import com.ors.DTO.ObjectDateDTO;
 import com.ors.DTO.SearchObjectDTO;
 import com.ors.model.*;
 import com.ors.model.Object;
@@ -43,20 +44,28 @@ public class ReservationController {
     @RequestMapping(value = "/reservation/{objectId}", method = RequestMethod.GET)
     public String reservationAssignment(@PathVariable("objectId") Long objectId, HttpServletRequest request, Model model) {
 
-        System.out.println("1");
         User user = priceListService.getUser(request.getUserPrincipal().getName());System.out.println("1");
-        //PriceList price = priceListService.findById(Long.valueOf(objectId));System.out.println("1");
         Object object = objectService.findById(objectId);System.out.println("1");
-        //ObjectDutyHours objectDutyHours = objectDutyHoursService.findByObjectId(object.getId());System.out.println("1");
 
         model.addAttribute("user", user);
-        //model.addAttribute("price", price);
         model.addAttribute("object", object);
-        //model.addAttribute("objectDutyHours", objectDutyHours);
         model.addAttribute("reservationForm", new Reservation());
 
         return "reservation";
     }
+
+    @RequestMapping(value = "/objectreservation", method = RequestMethod.POST)
+    public String objectDate(@ModelAttribute("showListObjectDate") ObjectDateDTO showListObjectDate, Model model) {
+        System.out.println("sssssssssssssssssssss");
+        model.addAttribute("objectForm", objectService.findById(showListObjectDate.getObjectId()));
+        System.out.println("sssssssssssssssssssss");
+        model.addAttribute("showListOfObjectForm", new SearchObjectDTO());System.out.println("sssssssssssssssssssss");
+        model.addAttribute("objectDutyHours", priceListService.findByObjectId(showListObjectDate.getObjectId()));System.out.println("sssssssssssssssssssss");
+        model.addAttribute("showListObjectDate", new ObjectDateDTO());System.out.println("sssssssssssssssssssss");
+        model.addAttribute("availableObjectByDate", reservationService.findAllByDateAndId(showListObjectDate.getDate(), showListObjectDate.getObjectId()));System.out.println("sssssssssssssssssssss");
+        return "object";
+    }
+
 
     @RequestMapping(value = "/reservation/{objectId}", method = RequestMethod.POST)
     public String reservationAssignment(@ModelAttribute("reservationForm") Reservation reservation, @PathVariable("objectId") Long objectId, BindingResult bindingResult, Model model) {

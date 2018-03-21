@@ -89,19 +89,22 @@ INSERT INTO `czas_otwarcia_obiektu`(`id_obiektu`, `poniedzialek_otwarcie`, `poni
 VALUES ((SELECT `id` from `obiekt` where `nazwa` = 'Mala sala gimnastyczna'), '08:00', '23:00', '08:00', '23:00', '08:00', '23:00', '08:00', '23:00', '08:00', '23:00', '10:30', '24:00', '10:30', '24:00');
 */
 INSERT INTO `rezerwacja`(`id_uzytkownika`, `id_obiektu` ,`dzien_rezerwacji`,`godzina_rezerwacji`, `godzina_zakonczenia_rezerwacji`)
-VALUES (2,1,'03/20/2018' ,'08:00', '09:00');
+VALUES (2,1,'03/23/2018' ,'08:00', '09:00');
 
 INSERT INTO `rezerwacja`(`id_uzytkownika`, `id_obiektu` ,`dzien_rezerwacji`,`godzina_rezerwacji`, `godzina_zakonczenia_rezerwacji`)
-VALUES (3,2,'03/20/2018' ,'08:00', '09:00');
+VALUES (3,2,'03/23/2018' ,'08:00', '09:00');
 
 INSERT INTO `rezerwacja`(`id_uzytkownika`, `id_obiektu` ,`dzien_rezerwacji`,`godzina_rezerwacji`, `godzina_zakonczenia_rezerwacji`)
-VALUES (4,3,'03/20/2018' ,'08:00', '09:00');
+VALUES (4,3,'03/23/2018' ,'08:00', '09:00');
 
 INSERT INTO `rezerwacja`(`id_uzytkownika`, `id_obiektu` ,`dzien_rezerwacji`,`godzina_rezerwacji`, `godzina_zakonczenia_rezerwacji`)
-VALUES (5,4,'03/20/2018' ,'08:00', '09:00');
+VALUES (5,4,'03/23/2018' ,'08:00', '09:00');
 
 INSERT INTO `rezerwacja`(`id_uzytkownika`, `id_obiektu` ,`dzien_rezerwacji`,`godzina_rezerwacji`, `godzina_zakonczenia_rezerwacji`)
-VALUES (2,1,'03/20/2018' ,'10:00', '13:00');
+VALUES (2,1,'03/23/2018' ,'10:00', '13:00');
+
+INSERT INTO `rezerwacja`(`id_uzytkownika`, `id_obiektu` ,`dzien_rezerwacji`,`godzina_rezerwacji`, `godzina_zakonczenia_rezerwacji`)
+VALUES (2,1,'03/23/2018' ,'14:00', '16:00');
 
 # username : admin, password administrator
 # username : user123, password user123

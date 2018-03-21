@@ -115,7 +115,7 @@ public class UserController {
 
     @RequestMapping(value = "/userProfile", method = RequestMethod.GET)
     public String userProfile(Model model, HttpServletRequest request) {
-        System.out.println("mam downa");
+
         User user = priceListService.getUser(request.getUserPrincipal().getName());
         model.addAttribute("user", user);
         return "userProfile";

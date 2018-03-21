@@ -33,8 +33,12 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public List<Reservation> findByProperTime(String date, String startTime, String endTime) {
-        System.out.println("sdsd "+date+" "+startTime+" "+endTime);
         return reservationRepository.findByProperTime(date,startTime,endTime);
+    }
+
+    @Override
+    public List<Reservation> findAllByDateAndId(String date, long id){
+        return reservationRepository.findByIdAndDate(date,id);
     }
 
     @Override

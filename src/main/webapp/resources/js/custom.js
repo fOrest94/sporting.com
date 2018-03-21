@@ -47,3 +47,7 @@ jQuery(function($) {
 $(function () {
     $("#datetimepicker").datepicker();
 });
+
+$(function () {
+    $("#datetimepicker2").datepicker();
+});

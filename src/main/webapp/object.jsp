@@ -262,9 +262,49 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
+        <form:form method="POST" action="/objectreservation/" modelAttribute="showListObjectDate" class="form-signin">
+        <div class="col-lg-4">
+                <div class="col-md-12" style="padding-top: 20px; padding-left: 0%">
+                    <label for="date">Sprawdz zarezerwowane godziny:</label><br>
+                    <form:input type="text" path="date" id="datetimepicker2"
+                                onchange="evaluatePrice()" placeholder="Wybierz date" />
+                    </br>
+                    <form:errors path="date"/>
+                    <form:hidden path="objectId" value="${objectForm.id}"/>
+                </div>
         </div>
-        <div class="col-lg-4" style="margin-top: 60px; margin-bottom: 60px">
+        <div class="col-lg-4" style="padding-top: 30px">
+            <button type="submit" class="btn btn-primary">Wybierz</button>
+        </div>
+        </form:form>
+        <div class="col-md-8" style="margin-top: 10px; margin-left: 15px; padding: 0px;">
+            <c:if test="${not empty availableObjectByDate}">
+            <h4 style="text-align: left; padding-left: 5px;">Lista rezerwacji</h4>
+            <table class="table table-bordered" style=" font-size: 13px;">
+                <thead>
+                <tr class="active">
+                    <th>#</th>
+                    <th>Dzień rezerwacji</th>
+                    <th>Godzina rezerwacji</th>
+                    <th>Godzina zakończenia</th>
+                </tr>
+                </thead>
+                <tbody style="background-color: white;">
+                <c:set var="count" value="0" scope="page"/>
+                    <c:forEach var="listValue" items="${availableObjectByDate}">
+                        <c:set var="count" value="${count + 1}" scope="page"/>
+                        <tr>
+                            <th><c:out value="${count}"></c:out></th>
+                            <th>${listValue.dayOfReservation}</th>
+                            <th>${listValue.hourOfReservation}</th>
+                            <th>${listValue.hourOfEndReservation}</th>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            </c:if>
+        </div>
+        <div class="col-md-2 col-md-offset-1" style="margin-top: 60px; margin-bottom: 60px">
             <a href="/reservation/${objectForm.id}" class="btn btn-primary" style="font-size: 20px;">Rezerwuj</a>
         </div>
     </div>
