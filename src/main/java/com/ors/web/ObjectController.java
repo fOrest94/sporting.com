@@ -106,9 +106,10 @@ public class ObjectController {
     @RequestMapping(value = "/userObjectManagement", method = RequestMethod.POST)
     public String objectManagementChange(@RequestParam("id") Long id, @RequestParam("operation") String operation ,Model model, HttpServletRequest request) {
 
-        if(operation.equals("delete"))
+        if(operation.equals("delete")) {
+            System.out.println(id+"           xcxcx");
             objectService.remove(id);
-        else if (operation.equals("update"))
+        }else if (operation.equals("update"))
             objectService.acceptObject(id);
 
         User user = priceListService.getUser(request.getUserPrincipal().getName());

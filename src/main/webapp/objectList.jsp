@@ -184,7 +184,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div align="right">
-                                <a class="btn btn-primary" href="/object/${listView.id}">Sprawdź</a>
+                                <a class="btn btn-primary" href="/object/${listView.id}">Więcej informacji</a>
                             </div>
                         </div>
                     </div>

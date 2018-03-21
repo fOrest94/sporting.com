@@ -180,8 +180,8 @@
                                                         </tbody>
                                                     </table>
                                                     <div class="col-lg-8 col-lg-offset-4" style="margin-bottom: 40px;">
-                                                        <button name="operation" value="update" style="width: 200px;" class="btn btn-primary">Potwierdź tożsamość</button>
-                                                        <button name="operation" value="delete" class="btn btn-danger">Usuń</button>
+                                                        <button name="operation" value="update" style="width: 200px;" class="btn btn-primary">Zatwierdź obiekt</button>
+                                                  <%--      <button name="operation" value="delete" class="btn btn-danger">Usuń</button>--%>
                                                     </div>
                                                 </form>
                                             </div>

@@ -57,6 +57,7 @@ public class ObjectServiceImpl implements ObjectService{
 
     @Override
     public void remove(Long id) {
+        System.out.println(id+"           xcxcx");
        objectRepository.delete(id);
     }
 
