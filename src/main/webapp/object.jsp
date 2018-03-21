@@ -177,23 +177,23 @@
             <div class="col-lg-12">
                 <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Fitness"
                    data-caption="Zajecia fitness z naszymi trenerkami to czysty profesjonalizm. I te widoki ... oh eh"
-                   data-image="../resources/img/2.jpg" data-target="#image-gallery">
-                    <img class="img-responsive" src="../resources/img/2.jpg" alt="A alt text"/>
+                   data-image="../resources/img/${objectForm.picture1}.1.jpg" data-target="#image-gallery">
+                    <img class="img-responsive" src="../resources/img/${objectForm.id}.1.jpg" alt="A alt text"/>
                 </a>
             </div>
             <div class="col-lg-12">
                 <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Hala tenisowa"
                    data-caption="Posiadamy profesjonalne boiska tenisowe z pełnym sprzętem tenisowym do wypożyczenia na miejscu"
-                   data-image="../resources/img/1.jpg" data-target="#image-gallery">
-                    <img class="img-responsive" src="../resources/img/1.jpg" alt="A alt text"/>
+                   data-image="../resources/img/${objectForm.picture2}.2.jpg" data-target="#image-gallery">
+                    <img class="img-responsive" src="../resources/img/${objectForm.id}.2.jpg" alt="A alt text"/>
                 </a>
             </div>
         </div>
         <div class="col-lg-8" style="padding: 15px 0px 0px 0px; margin: 0px 0px 0px 0px;">
             <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Basen sportowy"
-               data-caption="Takie baseny tylko u nas. Bez kitu lepszych nie ma" data-image="../resources/img/3.jpg"
+               data-caption="Takie baseny tylko u nas. Bez kitu lepszych nie ma" data-image="../resources/img/${objectForm.picture3}.3.jpg"
                data-target="#image-gallery">
-                <img class="img-responsive" src="../resources/img/3.jpg" alt="Short alt text"/>
+                <img class="img-responsive" src="../resources/img/${objectForm.id}.3.jpg" alt="Short alt text"/>
             </a>
         </div>
 <script>

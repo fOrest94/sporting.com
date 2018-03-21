@@ -172,7 +172,7 @@
                             <p style="text-align: left; font-size: 130%; padding: 0%">${listView.place}</p>
                         </div>
                         <div class="bottom-right-description-image">
-                            Ocena: ${listView.mark}
+                            <div style="margin: 2px">Ocena: ${listView.mark}</div>
                         </div>
                     </a>
                 </c:forEach>

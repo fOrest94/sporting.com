@@ -1,5 +1,7 @@
 package com.ors.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.text.DecimalFormat;
@@ -11,6 +13,7 @@ import java.text.DecimalFormat;
 @Entity
 @Table(name = "obiekt")
 public class Object {
+
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -56,6 +59,15 @@ public class Object {
 
     @Column(name = "zatwierdzony")
     private String objectAccept;
+
+    @Transient
+    MultipartFile picture1;
+
+    @Transient
+    MultipartFile picture2;
+
+    @Transient
+    MultipartFile picture3;
 
     public Long getId() {
         return id;
@@ -159,6 +171,30 @@ public class Object {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public MultipartFile getPicture1() {
+        return picture1;
+    }
+
+    public void setPicture1(MultipartFile picture1) {
+        this.picture1 = picture1;
+    }
+
+    public MultipartFile getPicture2() {
+        return picture2;
+    }
+
+    public void setPicture2(MultipartFile picture2) {
+        this.picture2 = picture2;
+    }
+
+    public MultipartFile getPicture3() {
+        return picture3;
+    }
+
+    public void setPicture3(MultipartFile picture3) {
+        this.picture3 = picture3;
     }
 
     @Override

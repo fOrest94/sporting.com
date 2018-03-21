@@ -97,9 +97,12 @@ body{
     color: white;
     bottom: 38px;
     right: 16px;
-    background-color: #428bca;
+    background-color: #adadad;
+	color: #070003;
     margin-right: 20px;
     margin-top: 60px;
+	font-weight: bold;
+	border-radius: 5px;
 }
 
 .bottom-left-description-image {

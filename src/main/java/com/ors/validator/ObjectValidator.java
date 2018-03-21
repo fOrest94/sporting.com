@@ -23,20 +23,19 @@ public class ObjectValidator implements Validator{
 
         Object object= (Object)o;
 
-        System.out.println(o.toString());
-        if(object.getName() == null || object.getName().length() < 3 || object.getName().length() > 32){System.out.println(1);
+        if(object.getName() == null || object.getName().length() < 3 || object.getName().length() > 32){System.out.println(1+" sdsd");
             errors.rejectValue("name", "Size.objectForm.name");
         }
-        if(object.getPlace() == null || object.getPlace().length() < 3 || object.getPlace().length() > 32){System.out.println(2);
+        if(object.getPlace() == null || object.getPlace().length() < 3 || object.getPlace().length() > 32){System.out.println(2+" sdsd");
             errors.rejectValue("place", "Size.objectForm.place");
         }
-        if(object.getStreet() == null || object.getStreet().length() < 3 || object.getStreet().length() > 32){System.out.println(3);
+        if(object.getStreet() == null || object.getStreet().length() < 3 || object.getStreet().length() > 32){System.out.println(3+" sdsd");
             errors.rejectValue("street", "Size.objectForm.street");
         }
-        if(object.getPostKey() == null || object.getPostKey().length() != 6){System.out.println(4);
+        if(object.getPostKey() == null || object.getPostKey().length() != 6){System.out.println(4+" sdsd");
             errors.rejectValue("postKey", "Size.objectForm.postKey");
         }
-        if(objectService.findByName(object.getName()) != null){System.out.println(5);
+        if( objectService.findByName(object.getName()) != null && object.getId() == null){System.out.println(5+" sdsd");
             errors.rejectValue("name", "Duplicate.objectForm.name");
         }
     }

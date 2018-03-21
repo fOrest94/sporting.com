@@ -1,8 +1,10 @@
 package com.ors.web;
 
+import com.ors.model.File;
 import com.ors.model.Object;
 import com.ors.model.User;
 import com.ors.service.*;
+import com.ors.validator.FileValidator;
 import com.ors.validator.ObjectValidator;
 import com.ors.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private FileValidator fileValidator;
 
     @Autowired
     private ObjectService objectService;
@@ -81,6 +89,7 @@ public class UserController {
             return "addObject";
         }
         objectService.save(objectForm);
+
         User user = new User();
         user.setObjectId(objectService.findByName(objectForm.getName()).getId());
         model.addAttribute("userForm", user);
@@ -109,9 +118,11 @@ public class UserController {
     @RequestMapping(value = "/userObject/{id}", method = RequestMethod.GET)
     public String userObjectShow(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
 
-        System.out.println("ssssssssssssssssssss");
         User user = priceListService.getUser(request.getUserPrincipal().getName());
-        System.out.println("ssssssssssssssssssss");
+
+        File fileModel = new File();
+
+        model.addAttribute("fileBucket", fileModel);
         model.addAttribute("objectForm", objectService.findById(id));
         model.addAttribute("user", user);
 
@@ -119,21 +130,61 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userObject/{id}", method = RequestMethod.POST)
-    public String userObjectUpdate(@ModelAttribute("objectForm") Object editedObject, @PathVariable("id") Long id, Model model, BindingResult bindingResult, HttpServletRequest request) {
+    public String userObjectUpdate(@Valid@ModelAttribute("objectForm") Object editedObject, @PathVariable("id") Long id, Model model, BindingResult bindingResult, HttpServletRequest request) {
 
+        System.out.println("sssssssssssssssssadasdafdxsfsdfv ");
         objectValidator.validate(editedObject, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            System.out.println("sdddddddddddddddddddddddd");
+            User user = priceListService.getUser(request.getUserPrincipal().getName());
+            model.addAttribute("objectForm", objectService.findById(id));
+            model.addAttribute("user", user);
             return "userObject";
+        }
+        System.out.println("obiekt id "+editedObject.getId());
+        try {
+
+            if(editedObject.getPicture1() != null) {
+                String uploadLocation = request.getSession().getServletContext().getRealPath("/") + "resources\\img\\";
+                String fileName = editedObject.getId() + ".1.jpg";
+                System.out.println("obiekt id "+fileName);
+                MultipartFile multipartFile = editedObject.getPicture1();
+                multipartFile.transferTo(new java.io.File(uploadLocation + fileName));
+            }
+
+            if(editedObject.getPicture2() != null) {
+                String uploadLocation = request.getSession().getServletContext().getRealPath("/") + "resources\\img\\";
+                String fileName = editedObject.getId() + ".2.jpg";
+                System.out.println("obiekt id "+fileName);
+                MultipartFile multipartFile = editedObject.getPicture2();
+                multipartFile.transferTo(new java.io.File(uploadLocation + fileName));
+            }
+
+            if(editedObject.getPicture3() != null) {
+                String uploadLocation = request.getSession().getServletContext().getRealPath("/") + "resources\\img\\";
+                String fileName = editedObject.getId() + ".3.jpg";
+                System.out.println("obiekt id "+fileName);
+                MultipartFile multipartFile = editedObject.getPicture3();
+                multipartFile.transferTo(new java.io.File(uploadLocation + fileName));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Brak zdjęcia");
         }
 
         objectService.update(editedObject);
+
         User user = priceListService.getUser(request.getUserPrincipal().getName());
+        model.addAttribute("fileBucket", new File());
         model.addAttribute("objectForm", objectService.findById(id));
         model.addAttribute("user", user);
 
         return "userObject";
+    }
+
+    @InitBinder("fileBucket")
+    protected void initBinderFileBucket(WebDataBinder binder) {
+        binder.setValidator(fileValidator);
     }
 
     @RequestMapping(value = "/userProfileReservation", method = RequestMethod.GET)

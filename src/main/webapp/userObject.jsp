@@ -20,6 +20,13 @@
     <script src="../resources/js/script.js"></script>
     <script src="../resources/js/scrollReveal.js"></script>
     <script src="../resources/js/custom.js"></script>
+
+    <script>
+        $(function() {
+            $('textarea#froala-editor').froalaEditor()
+        });
+    </script>
+
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" >
@@ -146,7 +153,7 @@
                                         <c:if test="${user.role == 'USER'}">
                                             <div class="col-lg-12">
 
-                                                <form:form method="POST" modelAttribute="objectForm" action="/userObject/${objectForm.id}" class="form-horizontal">
+                                                <form:form method="POST" modelAttribute="objectForm" enctype="multipart/form-data" action="/userObject/${objectForm.id}" class="form-horizontal">
                                                     <fieldset>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label" for="name">Pokaż profil:</label>
@@ -209,7 +216,7 @@
                                                             <div class="col-md-8">
                                                                 <spring:bind path="description">
                                                                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                                                                        <form:textarea path="description" class="form-control" name="description" rows="8" cols="62"
+                                                                        <form:textarea id="froala-editor" path="description" class="form-control" name="description" rows="8" cols="62"
                                                                                        placeholder="${objectForm.description}"
                                                                                        required="true"></form:textarea>
                                                                         <form:errors path="description"></form:errors>
@@ -268,7 +275,56 @@
                                                                 %
                                                             </div>
                                                         </div>
+                                                        <script>
+                                                            function dodajZdjecie2() {
+                                                                document.getElementById('zdjecie2').style.display = "block";
+                                                            }
+                                                            function dodajZdjecie3() {
+                                                                document.getElementById('zdjecie3').style.display = "block";
+                                                            }
+                                                            function dodajZdjecie4() {
+                                                                document.getElementById('zdjecie4').style.display = "block";
+                                                            }
+                                                        </script>
+
                                                         <form:hidden path="id" value="${objectForm.id}"/>
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="name">Dodaj zdjęcie</label>
+                                                            <div class="col-md-3" style="padding-right: 0%; margin-right: 0%">
+                                                                <form:input type="file" path="picture1" class="upload" />
+                                                                <div class="has-error">
+                                                                    <form:errors path="picture1" class="help-inline"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div align="right" class="col-md-4" style=" padding-right: 0%; padding-right: 10px">
+                                                                <input type="button" name="answer" value="Dodaj kolejne" onclick="dodajZdjecie2(); dodajZdjecie3()" />
+                                                            </div>
+                                                            <div id="zdjecie2"  style="display:none;">
+                                                                <div class="col-md-3">
+                                                                    <form:input type="file" path="picture2" class="upload" />
+                                                                    <div class="has-error">
+                                                                        <form:errors path="picture2" class="help-inline"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div id="zdjecie3"  style="display:none;">
+                                                            <div align="right" class="col-md-4" style=" padding-right: 0%; padding-right: 10px">
+                                                                <input type="button" name="answer" value="Dodaj kolejne" onclick=" dodajZdjecie4()" />
+                                                            </div>
+                                                            </div>
+                                                            <div id="zdjecie4"  style="display:none;">
+                                                                <div class="col-md-3">
+                                                                    <form:input type="file" path="picture3" class="upload" />
+                                                                    <div class="has-error">
+                                                                        <form:errors path="picture3" class="help-inline"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label" for="singlebutton"></label>
                                                             <div class="col-md-3 col-md-offset-5">
