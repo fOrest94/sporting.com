@@ -64,6 +64,13 @@ public class ObjectController {
                     reservationList.add(tempPlus);
             }
         }
+        if(reservationList.size() == 0){
+
+            model.addAttribute("objectList", objectList);
+            model.addAttribute("objectPlace", searchObjectDTO.getObjectPlace());
+            return "objectList";
+
+        }
 
         int startTime = Integer.valueOf(searchObjectDTO.getStartTime().replace(":", ""));
         int endTime = Integer.valueOf(searchObjectDTO.getEndTime().replace(":",""));
@@ -78,7 +85,7 @@ public class ObjectController {
             else if (searchObjectDTO.getDate().equals(reservation.getDayOfReservation()) && startTime >= tempEnd)
                 objectListApprepiate.add(objectService.findById(reservation.getObjectId()));
         }
-
+        System.out.println( objectListApprepiate.size()+"   sssssssssssssssssssssssssssss   "+searchObjectDTO.getObjectPlace()+"           kurwa");
         model.addAttribute("objectList", objectListApprepiate);
         model.addAttribute("objectPlace", searchObjectDTO.getObjectPlace());
         return "objectList";

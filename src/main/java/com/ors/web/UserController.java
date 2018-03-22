@@ -77,7 +77,7 @@ public class UserController {
 
         model.addAttribute("topObjects", rankingService.getTopSportObjects());
         model.addAttribute("showListOfObjectForm", new SearchObjectDTO());
-        return "index";
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/addObject", method = RequestMethod.GET)
